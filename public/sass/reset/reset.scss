@@ -1,0 +1,15 @@
+$font-primary: 'Montserrat', sans-serif;
+$font-title: 'Dancing Script', cursive;
+
+html{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box
+}
+
+body{
+    font-family: $font-primary;
+    color: #333;
+    line-height: 1.5;
+    font-weight: 300;
+}
