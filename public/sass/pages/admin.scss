@@ -1,0 +1,29 @@
+.service{
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+
+    &__body{
+
+    }
+    &__title{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+        h4{
+            margin-right: auto;
+        }
+    }
+
+    &__img{
+        height: 5rem;
+    }
+    &__img-show{
+        display: flex;
+    }
+    &__action{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

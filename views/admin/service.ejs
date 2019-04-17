@@ -1,0 +1,59 @@
+<%- include('../includes/html-header.ejs') %>
+<!-- navbar section -->
+<%- include('../includes/admin-header.ejs') %>
+
+
+<div class="container service" id="service">
+    <h2> Service page </h2>
+    <hr>
+    <div class="service__body">
+        <div class="service__title">
+            <h4>3 services total</h4>
+            <a href="/admin/create-service" class="btn btn-primary">Create service </a>
+        </div>
+        <% if(!services[0]) { %>
+            <h5>There is no services here! Let's <a href="/admin/create-service">create one</a></h5>
+        <% } else { %>
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">desc</th>
+                        <th scope="col">tag</th>
+                        <th scope="col">image</th>
+                        <th scope="col">price(VND)</th>
+                        <th scope="col">time(min)</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% services.forEach((serv,i)=>{ %>
+                        <tr>
+                            <td><%= i %></td>
+                            <td><%= serv.name %></td>
+                            <td class="desc"><%= serv.desc.join(' ') %></td>
+                            <td><%= tags[i] %></td>
+                            <td>
+                                <img class="service__img" src="<%= serv.imgUrls[0] %>" alt="anh">
+                            </td>
+                            <td class="price"><%= serv.price %></td>
+                            <td><%= serv.time %></td>
+                            <td class="service__action">
+                                <a href="/admin/service/<%= serv._id %>" 
+                                    class="btn btn-warning mb-2 btn-sm">Edit</a>
+                                <button class="btn btn-danger btn-sm"
+                                        @click="popActive = true">Delete</button>
+                                <input type="hidden" value="<%= serv._id %>" ref="servId">
+                            </td>
+                    <% }) %>
+                    </tr>
+                </tbody>
+            </table>
+        <% } %>
+        
+    </div>
+
+</div>
+
+<%- include('../includes/html-footer.ejs') %>

@@ -1,0 +1,99 @@
+<%- include('../includes/html-header.ejs') %>
+<!-- navbar section -->
+<%- include('../includes/admin-header.ejs') %>
+
+    <div class="container service">
+        <h2><%= editMode ? 'Edit this service' : 'Create new service' %> </h2>
+        <% if(err) {%>
+            <h6 class="alert alert-danger"><%= err %></h6>
+        <% } %>
+        <hr>
+        <form action="<%= editMode ? '/admin/edit-service' : '/admin/create-service' %>" 
+            method="POST" 
+            enctype="multipart/form-data">
+
+            <div class="form-group">
+                <label for="name">Service name</label>
+                <input type="text" class="form-control" 
+                        name="name" 
+                        placeholder="Enter name"
+                        value="<%= editMode ? service.name : '' %>">
+            </div>
+            <div class="form-group">
+                <label for="desc">Service description</label>
+                <textarea type="text" 
+                            class="form-control" 
+                            name="desc" 
+                            placeholder="Enter description"
+                            rows="5"><%= editMode ? service.desc.join(';;') : '' %></textarea>
+
+                <small>Chú ý! Mỗi đoạn phân cách nhau bởi giấu ';;'</small>
+            </div>
+            <div class="form-group">
+                <label for="tag">Service tag</label>
+                <select name="tag" id="tag" 
+                        class="form-control">
+                    <option value="face" <%= editMode && service.tag === 'face' ? 'selected' : '' %>> 
+                        Facial care and treatment
+                    </option>
+                    <option value="massage" <%= editMode && service.tag === 'massage' ? 'selected' : '' %>>
+                        Massage therapy
+                    </option>
+                    <option value="body" <%= editMode && service.tag === 'body' ? 'selected' : '' %>>
+                        Body treatment
+                    </option>
+                    <option value="package" <%= editMode && service.tag === 'package' ? 'selected' : '' %>>
+                        Spa package
+                    </option>
+                    <option value="other" <%= editMode && service.tag === 'other' ? 'selected' : '' %>>Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="price">Service price (VND)</label>
+                <input type="number" 
+                        class="form-control" 
+                        name="price" placeholder="Enter price"
+                        value="<%= editMode ? service.price : '' %>">
+            </div>
+            <div class="form-group">
+                <label for="time">Service time (minutes)</label>
+                <input type="number" 
+                        class="form-control"
+                        name="time" placeholder="Enter time"
+                        value="<%= editMode ? service.time : '' %>">
+            </div>
+            <% if(!editMode) { %>
+                <div class="form-group">
+                    <label for="lang">Language</label>
+                    <select name="lang" id="lang" class="form-control">
+                        <option value="vn">Viet Nam</option>
+                        <option value="en">English</option>
+                        <option value="ko">Korean</option>
+                    </select>
+                </div>
+            <% } %>
+
+            <div class="form-group">
+                <label for="img">Images</label>
+                <input name="images" type="file" accept="images/*" class="form-control" multiple>
+                <% if(editMode) { %>
+                    <div class="service__img-show mt-4">
+                        <% service.imgUrls.forEach(img=>{ %>
+                            <img src="<%= img %>" alt="cax" height="200" class="mr-3">
+                        <% }) %>
+                    </div>
+                <% } %>
+            </div>
+
+            <% if(editMode) { %>
+                <input type="hidden" value="<%= service._id %>" name="servId">                
+            <% } %>
+
+
+            <button class="btn btn-success">
+                <%= editMode ? 'Update' : 'Create new' %>
+            </button>
+        </form>
+    </div>
+
+<%- include('../includes/html-footer.ejs') %>
