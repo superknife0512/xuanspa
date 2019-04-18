@@ -1,4 +1,5 @@
 const Service = require('../models/Service');
+const Blog = require('../models/Blog');
 const deleteFile = require('../utils/deleteImg')
 
 exports.getAdminPannel = async (req,res,next)=>{
@@ -13,9 +14,19 @@ exports.getAdminPannel = async (req,res,next)=>{
     }
 }
 
+
+// SERVICE SECTION **************************************************
 exports.getService = async (req,res,next)=>{
     try {
-        const services = await Service.find();
+        const langFilter = req.query.lang || null;
+        const tagFilter = req.query.tag || null;
+        let services;
+
+        if(!langFilter && !tagFilter){
+            services =await Service.find()
+        } else {
+            services = await Service.find({lang: langFilter, tag: tagFilter});
+        }
         const tags = services.map(serv=>{
             let newTab;
             if(serv.tag === 'face'){
@@ -24,7 +35,7 @@ exports.getService = async (req,res,next)=>{
                 newTab = 'Massage therapy'
             } else if (serv.tag === 'body'){
                 newtab = 'Body treatment'
-            } else if (serv.tag ===' package'){
+            } else if (serv.tag ==='package'){
                 newTab = 'Spa package'
             } else {
                 newTab = 'Other'
@@ -36,6 +47,10 @@ exports.getService = async (req,res,next)=>{
             title: 'admin service',
             activeTab: 'service',
             tags,
+            filApply:{
+                lgFilter: langFilter,
+                tgFilter: tagFilter,
+            }
         })
     } catch (err) {
         next(err)
@@ -162,7 +177,7 @@ exports.postEditService = async (req,res,next)=>{
 
 exports.deleteService = async (req,res,next)=>{
     try {
-        const servId = req.params.servId;
+        const servId = req.body.servId;
         const service = await Service.findById(servId);
     
         service.imgUrls.forEach(img=>{
@@ -171,6 +186,94 @@ exports.deleteService = async (req,res,next)=>{
     
         await Service.findByIdAndRemove(servId);
         res.redirect('/admin/service')        
+    } catch (err) {
+        next(err)
+    }
+}
+
+// BLOG SECTION **************************************************
+
+exports.getBlogs = async (req,res,next)=>{
+    try {
+        const langFilter = req.query.lang || null;
+        let blogs;
+
+        if(!langFilter){
+            blogs = await Blog.find()
+        } else {
+            blogs = await Blog.find({lang: langFilter});
+        }
+
+        res.render('admin/blog',{
+            title: 'Blogs',
+            activeTab: 'blog',
+            blogs,
+            filApply:{
+                langFilter
+            }
+        })
+
+    } catch (err) {
+        next(err)
+    }
+}
+
+exports.getCreateBlog = async (req,res,next)=>{
+    try {
+        res.render('admin/createBlog', {
+            title: 'Create Blog',
+            activeTab: 'blog',
+            err: null,
+            editMode: false,
+        })
+
+    } catch (err) {
+        next(err)
+    }
+}
+
+exports.postCreateBlog = async (req,res,next)=>{
+    try {
+        const title = req.body.title;
+        const shortDesc = req.body.shortDesc;
+        const lang = req.body.lang;
+        const html = req.body.html;
+        const delta = req.body.delta;
+        const views = Math.ceil(Math.random()*100+200);
+
+        if(!title || !shortDesc || !delta){
+            return res.render('admin/createBlog', {
+                title: 'Create Blog',
+                activeTab: 'blog',
+                err: 'You must fill all fields',
+                editMode: false,
+            })
+        }
+
+        if(!req.file){
+            return res.render('admin/createBlog', {
+                title: 'Create Blog',
+                activeTab: 'blog',
+                err: 'You must pick an image',
+                editMode: false,
+            })
+        }
+
+        const imgUrl = req.file.path.replace(/\\/g, '/');
+
+        const blog =new Blog({
+            title,
+            shortDesc,
+            lang,
+            html,
+            delta,
+            views,
+            imgUrl
+        })
+
+        await blog.save();
+        res.redirect('/admin/blog')
+
     } catch (err) {
         next(err)
     }

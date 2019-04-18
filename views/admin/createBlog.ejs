@@ -1,0 +1,67 @@
+<%- include('../includes/html-header.ejs') %>
+<!-- navbar section -->
+<%- include('../includes/admin-header.ejs') %>
+
+    <div class="container service">
+        <h2><%= editMode ? 'Edit this blog' : 'Create new blog' %> </h2>
+        <% if(err) {%>
+            <h6 class="alert alert-danger"><%= err %></h6>
+        <% } %>
+        <hr>
+        <form action="<%= editMode ? '/admin/edit-blog' : '/admin/create-blog' %>" 
+            method="POST" 
+            enctype="multipart/form-data">
+
+            <div class="form-group">
+                <label for="title">Blog title</label>
+                <input type="text" class="form-control" 
+                        name="title" 
+                        placeholder="Enter title"
+                        value="<%= editMode ? blog.title : '' %>">
+            </div>
+            <div class="form-group">
+                <label for="shortDesc">Blog short description</label>
+                <textarea type="text" 
+                            class="form-control" 
+                            name="shortDesc" 
+                            placeholder="Enter description"
+                            rows="5"><%= editMode ? blog.shortDesc : '' %></textarea>
+            </div>
+            <% if(!editMode) { %>
+                <div class="form-group">
+                    <label for="lang">Language</label>
+                    <select name="lang" id="lang" class="form-control">
+                        <option value="vn">Viet Nam</option>
+                        <option value="en">English</option>
+                        <option value="ko">Korean</option>
+                    </select>
+                </div>
+            <% } %>
+
+            <div class="form-group">
+                <label for="img">Images</label>
+                <input name="image" type="file" accept="images/*" class="form-control" >
+            </div>
+
+            <% if(editMode) { %>
+                <input type="hidden" value="<%= blog._id %>" name="blogId">                
+            <% } %>
+
+            <hr>
+
+            <div id="editor">
+                <p>Write some text</p>
+                <p>Some initial <strong>bold</strong> text</p>
+                <p><br></p>
+            </div>
+            <br>
+            <input type="hidden" name="html" value="">
+            <input type="hidden" name="delta" value="">
+
+            <button class="btn btn-success" type="submit">
+                <%= editMode ? 'Update' : 'Create new' %>
+            </button>
+        </form>
+    </div>
+
+<%- include('../includes/html-footer.ejs') %>

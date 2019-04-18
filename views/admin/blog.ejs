@@ -4,8 +4,8 @@
 
 
 <div class="container service" id="service">
-    <h2> Service page </h2>
-    <form class="filter" action="/admin/service" method="GET">
+    <h2> Blog page </h2>
+    <form class="filter" action="/admin/blog" method="GET">
         <div class="filter__lang">
             <select name="lang" id="lang" class="form-control">
                 <option value="none">pick one</option>
@@ -14,70 +14,45 @@
                 <option value="ko"<%= filApply.lgFilter === 'ko' ? 'selected' : '' %>>Korean</option>
             </select>            
         </div>
-        <div class="filter__tag">
-            <select name="tag" id="tag" 
-                    class="form-control">
-                <option value="#"> pick one</option>
-                <option value="face" <%= filApply.tgFilter === 'face' ? 'selected' : '' %>> 
-                    Facial care and treatment
-                </option>
-                <option value="massage" <%= filApply.tgFilter === 'massage' ? 'selected' : '' %>>
-                    Massage therapy
-                </option>
-                <option value="body" <%= filApply.tgFilter === 'body' ? 'selected' : '' %>>
-                    Body treatment
-                </option>
-                <option value="package" <%= filApply.tgFilter === 'package' ? 'selected' : '' %>>
-                    Spa package
-                </option>
-                <option value="other" <%= filApply.tgFilter === 'other' ? 'selected' : '' %>>
-                    Other
-                </option>
-            </select>
-        </div>
         <button class="btn btn-outline-info">Apply filter</button>
     </form>
     <hr>
     <div class="service__body">
         <div class="service__title">
-            <h4><%= services.length %> services total</h4>
-            <a href="/admin/create-service" class="btn btn-primary">Create service </a>
+            <h4><%= blogs.length || 1 %> Blogs total</h4>
+            <a href="/admin/create-blog" class="btn btn-primary">Create blog </a>
         </div>
-        <% if(!services[0]) { %>
-            <h5>There is no services here! Let's <a href="/admin/create-service">create one</a></h5>
+        <% if(!blogs[0]) { %>
+            <h5>There is no blogs here! Let's <a href="/admin/create-blog">create one</a></h5>
         <% } else { %>
             <table class="table table-responsive table-hover">
                 <thead>
                     <tr>
                         <th scope="col">STT</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">desc</th>
-                        <th scope="col">tag</th>
+                        <th scope="col">title</th>
+                        <th scope="col">shortDesc</th>
+                        <th scope="col">views</th>
                         <th scope="col">image</th>
-                        <th scope="col">price(VND)</th>
-                        <th scope="col">time(min)</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <% services.forEach((serv,i)=>{ %>
+                    <% blogs.forEach((blog,i)=>{ %>
                         <tr>
                             <td><%= i %></td>
-                            <td><%= serv.name %></td>
-                            <td class="desc"><%= serv.desc.join(' ') %></td>
-                            <td><%= tags[i] %></td>
+                            <td><%= blog.title %></td>
+                            <td class="desc"><%= blog.shortDesc %></td>
+                            <td><%= blog.views %></td>
                             <td>
-                                <img class="service__img" src="<%= serv.imgUrls[0] %>" alt="anh">
+                                <img class="service__img" src="<%= blog.imgUrl %>" alt="anh">
                             </td>
-                            <td class="price"><%= serv.price %></td>
-                            <td><%= serv.time %></td>
                             <td class="service__action">
-                                <a href="/admin/service/<%= serv._id %>" 
+                                <a href="/admin/blog/<%= blog._id %>" 
                                     class="btn btn-warning mb-2 btn-sm">Edit</a>
                                 <button class="btn btn-danger btn-sm del-btn">
                                     Delete
                                 </button>
-                                <input type="hidden" value="<%= serv._id %>" class="servId">
+                                <input type="hidden" value="<%= blog._id %>" class="blogId">
                             </td>
                         </tr>
                     <% }) %>
@@ -93,9 +68,9 @@
                 </p>
                 <hr>
                 <form class="popup__action d-flex" 
-                        action="/admin/delete-service" 
+                        action="/admin/delete-blog" 
                         method="POST">
-                    <input type="hidden" value="" name="servId">
+                    <input type="hidden" value="" name="blogId">
                     <a href="#" class="btn btn-outline-secondary mr-4 canc-btn">Cancel</a>
                     <button type="submit" class="btn btn-outline-primary">
                         Yes, Delete

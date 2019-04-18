@@ -1,0 +1,32 @@
+
+.popup{
+    max-width: 60rem;
+    padding: 2rem 3rem;
+    background-color: white;
+    border-radius: 10px;
+
+    &__wrapper{
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba($color: #000000, $alpha: .2);
+        justify-content: center;
+        align-items: center;
+        z-index: 500;
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 0 .5rem;
+        display: none;
+    }
+    &__title{
+        color: rgb(209, 40, 62);
+        font-weight: 700;
+    }
+
+    &__desc{
+        
+    }
+    &__action{
+        display: flex;
+    }
+}
