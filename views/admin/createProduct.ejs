@@ -3,29 +3,38 @@
 <%- include('../includes/admin-header.ejs') %>
 
     <div class="container service">
-        <h2><%= editMode ? 'Edit this blog' : 'Create new blog' %> </h2>
+        <h2><%= editMode ? 'Edit this product' : 'Create new product' %> </h2>
         <% if(err) {%>
             <h6 class="alert alert-danger"><%= err %></h6>
         <% } %>
         <hr>
-        <form action="<%= editMode ? '/admin/edit-blog' : '/admin/create-blog' %>" 
+        <form action="<%= editMode ? '/admin/edit-product' : '/admin/create-product' %>" 
             method="POST" 
             enctype="multipart/form-data">
 
             <div class="form-group">
-                <label for="title">Blog title</label>
+                <label for="title">Product name</label>
                 <input type="text" class="form-control" 
-                        name="title" 
-                        placeholder="Enter title"
-                        value="<%= editMode ? blog.title : '' %>">
+                        name="name" 
+                        placeholder="Enter name"
+                        value="<%= editMode ? product.name : '' %>">
             </div>
+
             <div class="form-group">
-                <label for="shortDesc">Blog short description</label>
+                <label for="brand">Product brand</label>
+                <input type="text" class="form-control" 
+                        name="brand" 
+                        placeholder="Enter brand"
+                        value="<%= editMode ? product.brand : '' %>">
+            </div>
+
+            <div class="form-group">
+                <label for="desc">product description</label>
                 <textarea type="text" 
                             class="form-control" 
-                            name="shortDesc" 
+                            name="desc" 
                             placeholder="Enter description"
-                            rows="5"><%= editMode ? blog.shortDesc : '' %></textarea>
+                            rows="5"><%= editMode ? product.desc : '' %></textarea>
             </div>
             <% if(!editMode) { %>
                 <div class="form-group">
@@ -41,25 +50,14 @@
             <div class="form-group">
                 <label for="img">Images</label>
                 <input name="image" type="file" accept="images/*" class="form-control" >
+                <% if(editMode) { %>
+                    <img src="<%= product.imgUrl %>" alt="old file" height="200">
+                <% } %>
             </div>
 
             <% if(editMode) { %>
-                <input type="hidden" value="<%= blog._id %>" name="blogId">                
+                <input type="hidden" value="<%= product._id %>" name="prodId">                
             <% } %>
-
-            <hr>
-            
-            <div class="form-group">
-                <label for="cax">Blog content</label>
-                <div id="editor">
-                    <p>Write some text</p>
-                    <p>Some initial <strong>bold</strong> text</p>
-                    <p><br></p>
-                </div>
-                <br>
-                <input type="hidden" name="html" value="<%= editMode ? blog.html : '' %>">
-                <input type="hidden" name="delta" value="<%= editMode ? blog.delta : '' %>">
-            </div>
 
             <button class="btn btn-success" type="submit">
                 <%= editMode ? 'Update' : 'Create new' %>
@@ -67,4 +65,4 @@
         </form>
     </div>
 
-<%- include('../includes/html-footer.ejs') %>
+<%- include('../includes/html-footer.ejs') %></input>

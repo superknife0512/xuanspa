@@ -4,6 +4,8 @@
     padding: 2rem 3rem;
     background-color: white;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
 
     &__wrapper{
         width: 100vw;
@@ -24,9 +26,13 @@
     }
 
     &__desc{
-        
+        padding: 1.5rem 0;
+        margin: 1.2rem 0;
+        border-top: 1px solid rgba(0, 0, 0, .2);
+        border-bottom: 1px solid rgba(0, 0, 0, .2)
     }
     &__action{
         display: flex;
+        align-self: flex-end;
     }
 }

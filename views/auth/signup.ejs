@@ -1,0 +1,41 @@
+<%- include('../includes/html-header.ejs') %>
+
+    <div class="auth">
+        <div class="auth__body">
+            <h4 class="auth__title auth__title--signup">
+                Đăng Ký
+            </h4>
+            <% if(err) {%>
+                <div class="alert alert-primary">
+                    <% err %>
+                </div>
+            <% } %>
+            <hr>
+            <form action="/auth/signup" method="POST">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" 
+                            name="email" 
+                            placeholder="Enter title" >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" 
+                            name="password" 
+                            placeholder="Enter password" >
+                </div>
+
+                <div class="form-group">
+                    <label for="cfPass">Password confirm</label>
+                    <input type="password" class="form-control" 
+                            name="cfPassword" 
+                            placeholder="Enter confirm password" >
+                </div>
+
+                <button class="btn btn-primary">Sign up</button>
+            </form>
+        </div>
+    </div>
+
+<%- include('../includes/html-footer.ejs') %>

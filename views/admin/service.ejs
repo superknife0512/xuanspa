@@ -8,7 +8,7 @@
     <form class="filter" action="/admin/service" method="GET">
         <div class="filter__lang">
             <select name="lang" id="lang" class="form-control">
-                <option value="none">pick one</option>
+                <option value="none">pick language</option>
                 <option value="vn" <%= filApply.lgFilter === 'vn' ? 'selected' : '' %>>Vietnamese</option>
                 <option value="en" <%= filApply.lgFilter === 'en' ? 'selected' : '' %>>English</option>
                 <option value="ko"<%= filApply.lgFilter === 'ko' ? 'selected' : '' %>>Korean</option>
@@ -17,7 +17,7 @@
         <div class="filter__tag">
             <select name="tag" id="tag" 
                     class="form-control">
-                <option value="#"> pick one</option>
+                <option value="none"> pick tag</option>
                 <option value="face" <%= filApply.tgFilter === 'face' ? 'selected' : '' %>> 
                     Facial care and treatment
                 </option>
@@ -51,7 +51,7 @@
                     <tr>
                         <th scope="col">STT</th>
                         <th scope="col">Name</th>
-                        <th scope="col">desc</th>
+                        <th scope="col">description</th>
                         <th scope="col">tag</th>
                         <th scope="col">image</th>
                         <th scope="col">price(VND)</th>
@@ -95,7 +95,7 @@
                 <form class="popup__action d-flex" 
                         action="/admin/delete-service" 
                         method="POST">
-                    <input type="hidden" value="" name="servId">
+                    <input type="hidden" value="" name="servId" class="curId">
                     <a href="#" class="btn btn-outline-secondary mr-4 canc-btn">Cancel</a>
                     <button type="submit" class="btn btn-outline-primary">
                         Yes, Delete

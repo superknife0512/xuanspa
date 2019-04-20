@@ -1,0 +1,34 @@
+<%- include('../includes/html-header.ejs') %>
+
+    <div class="auth">
+        <div class="auth__body">
+            <h4 class="auth__title auth__title--signin">
+                Đăng Nhập
+            </h4>
+            <% if(err) {%>
+                <div class="alert alert-danger">
+                    <%= err %>
+                </div>
+            <% } %>
+            <hr>
+            <form action="/auth/signin" method="POST">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" 
+                            name="email" 
+                            placeholder="Enter title" >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" 
+                            name="password" 
+                            placeholder="Enter password" >
+                </div>
+
+                <button class="btn btn-primary">Sign in</button>
+            </form>
+        </div>
+    </div>
+
+<%- include('../includes/html-footer.ejs') %>

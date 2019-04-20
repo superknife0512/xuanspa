@@ -2,9 +2,109 @@
 <!-- navbar section -->
 <%- include('../includes/admin-header.ejs') %>
 
+<div class="container service" id="service">
+    
+    <br>
+    <h2> Admin setting </h2>
+    <form class="filter" action="/admin" method="GET">
+        <div class="filter__lang">
+            <select name="langFilter" id="langFilter" class="form-control">
+                <option value="none">pick one</option>
+                <option value="vn" <%= langFilter === 'vn' ? 'selected' : '' %>>Vietnamese</option>
+                <option value="en" <%= langFilter === 'en' ? 'selected' : '' %>>English</option>
+                <option value="ko"<%= langFilter === 'ko' ? 'selected' : '' %>>Korean</option>
+            </select>            
+        </div>
+        <button class="btn btn-outline-info">Apply filter</button>
+    </form>
+    <div class="service__body">
+        <hr>
+        <form action="<%= editMode ? '/admin/edit' : '/admin' %>" 
+            method="POST" 
+            enctype="multipart/form-data">
 
-<div class="container">
-    <h2 class="adminboard"> Admin board </h2>
+            <div class="form-group">
+                <label for="title">Hero title</label>
+                <input type="text" class="form-control" 
+                        name="title" 
+                        placeholder="Enter title"
+                        value="<%= editMode ? adminData.title : '' %>" >
+            </div>
+            <div class="form-group">
+                <label for="subtitle">Hero subtitle</label>
+                <textarea type="text" 
+                            class="form-control" 
+                            name="subtitle" 
+                            placeholder="Enter description"
+                            rows="5"
+                            ><%= editMode ? adminData.subTitle : '' %></textarea>
+            </div>
+            <% if(!editMode) { %>
+                <div class="form-group">
+                    <label for="lang">Language</label>
+                    <select name="lang" id="lang" class="form-control">
+                        <option value="vn">Viet Nam</option>
+                        <option value="en">English</option>
+                        <option value="ko">Korean</option>
+                    </select>
+                </div>
+            <% } %>
+            
+            <% if(langFilter === 'vn') {%>
+                <div class="form-group">
+                    <label for="heroImg">Hero image</label>
+                    <input name="heroImg" type="file" accept="images/*" class="form-control">
+                    <br>
+                    <img src="<%= adminData.heroImgUrl %>" alt="anh" height="200">
+                </div>
+    
+                <div class="form-group">
+                    <label for="gallery">Gallery</label>
+                    <input name="gallery" type="file" accept="images/*" class="form-control" 
+                            multiple  > <br>
+                    <% adminData.gallerieUrls.forEach(img=>{ %>
+                        <img src="<%= img %>" alt="anh" height="200">
+                    <% }) %>
+                </div>
+            <% } %>
+
+            <hr>
+            
+            <div class="form-group">
+                <label for="cax">Recruit content</label>
+                <div id="editor1">
+                    <p>Some recruit text</p>
+                    <p>Some initial <strong>bold</strong> text</p>
+                    <p><br></p>
+                </div>
+                <br>
+                <input type="hidden" name="recruitHtml" value="<%= editMode ? adminData.recruitContent.html : '' %>">
+                <input type="hidden" name="recruitDelta" value="<%= editMode ? adminData.recruitContent.delta : '' %>">
+            </div>
+
+            <hr>
+
+            <div class="form-group">
+                <label for="cax">About content</label>
+                <div id="editor2">
+                    <p>Some About us text</p>
+                    <p>Some initial <strong>bold</strong> text</p>
+                    <p><br></p>
+                </div>
+                <br>
+                <input type="hidden" name="aboutHtml" value="<%= editMode ? adminData.aboutContent.html : '' %>">
+                <input type="hidden" name="aboutDelta" value="<%= editMode ? adminData.aboutContent.delta: '' %>">
+            </div>
+
+            <input type="hidden" 
+                    value="<%= editMode ? langFilter : '' %>"
+                    name="lang">
+
+            <button class="btn btn-success" type="submit">
+                <%= editMode ? 'Update' : 'Create new' %>
+            </button>
+        </form>
+
 </div>
 
 <%- include('../includes/html-footer.ejs') %>

@@ -4,8 +4,8 @@
 
 
 <div class="container service" id="service">
-    <h2> Blog page </h2>
-    <form class="filter" action="/admin/blog" method="GET">
+    <h2> Promotion </h2>
+    <form class="filter" action="/admin/promotion" method="GET">
         <div class="filter__lang">
             <select name="lang" id="lang" class="form-control">
                 <option value="none">pick one</option>
@@ -19,40 +19,44 @@
     <hr>
     <div class="service__body">
         <div class="service__title">
-            <h4><%= blogs.length %> Blogs total</h4>
-            <a href="/admin/create-blog" class="btn btn-primary">Create blog </a>
+            <h4><%= promotions.length %> Promotions total</h4>
+            <a href="/admin/create-promotion" class="btn btn-primary">Create promotion </a>
         </div>
-        <% if(!blogs[0]) { %>
-            <h5>There is no blogs here! Let's <a href="/admin/create-blog">create one</a></h5>
+        <% if(!promotions[0]) { %>
+            <h5>There is no Promotions here! Let's <a href="/admin/create-promotion">create one</a></h5>
         <% } else { %>
             <table class="table table-responsive table-hover">
                 <thead>
                     <tr>
                         <th scope="col">STT</th>
                         <th scope="col">title</th>
-                        <th scope="col">short description</th>
-                        <th scope="col">views</th>
+                        <th scope="col">description</th>
+                        <th scope="col">discount(%)</th>
                         <th scope="col">image</th>
+                        <th scope="col">time start</th>
+                        <th scope="col">time end</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <% blogs.forEach((blog,i)=>{ %>
+                    <% promotions.forEach((pro,i)=>{ %>
                         <tr>
                             <td><%= i %></td>
-                            <td><%= blog.title %></td>
-                            <td class="desc"><%= blog.shortDesc %></td>
-                            <td><%= blog.views %></td>
+                            <td><%= pro.title %></td>
+                            <td class="desc"><%= pro.desc %></td>
+                            <td><%= pro.discount %></td>
                             <td>
-                                <img class="service__img" src="<%= blog.imgUrl %>" alt="anh">
+                                <img class="service__img" src="<%= pro.imgUrl %>" alt="anh">
                             </td>
+                            <td><%= pro.timeStart %></td>
+                            <td><%= pro.timeEnd %></td>
                             <td class="service__action">
-                                <a href="/admin/blog/<%= blog._id %>" 
+                                <a href="/admin/promotion/<%= pro._id %>" 
                                     class="btn btn-warning mb-2 btn-sm">Edit</a>
                                 <button class="btn btn-danger btn-sm del-btn">
                                     Delete
                                 </button>
-                                <input type="hidden" value="<%= blog._id %>" class="blogId">
+                                <input type="hidden" value="<%= pro._id %>" class="proId">
                             </td>
                         </tr>
                     <% }) %>
@@ -68,9 +72,9 @@
                 </p>
                 
                 <form class="popup__action d-flex" 
-                        action="/admin/delete-blog" 
+                        action="/admin/delete-promotion" 
                         method="POST">
-                    <input type="hidden" value="" name="blogId" class="curId">
+                    <input type="hidden" value="" name="proId" class="curId">
                     <a href="#" class="btn btn-outline-secondary mr-4 canc-btn">Cancel</a>
                     <button type="submit" class="btn btn-outline-primary">
                         Yes, Delete

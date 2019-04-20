@@ -1,0 +1,39 @@
+.auth{
+    background-color: rgb(243, 243, 243);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    &__body{
+        background-color: white;
+        box-shadow: 2px 7px 25px -9px rgba(0,0,0,0.22);
+        width: 40rem;
+        padding: 2rem 1.5rem;
+        margin: 0 1.2rem;        
+        animation: fadeIn 1.5s forwards cubic-bezier(.21,.54,.02,1.01) ;
+    }
+    &__title{
+        font-weight: 600;
+        text-transform: uppercase;
+
+        &--signup{
+            color: rgb(26, 172, 240)
+        }
+        &--signin{
+            color: rgb(230, 33, 59);
+        }
+    }
+    
+}
+
+@keyframes fadeIn{
+    0%{
+        opacity: .3;
+        transform: translateY(-5rem);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0rem);
+    }
+}

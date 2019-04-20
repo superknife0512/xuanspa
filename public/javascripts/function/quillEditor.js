@@ -30,6 +30,12 @@ if(editorDOM){
         },
         theme: 'snow'
     })
+
+    const delta = $('input[name=delta').val();
+
+    if(delta){
+        quill.setContents(JSON.parse(delta));
+    }
     
     quill.on('editor-change',function(){
         const html = quill.root.innerHTML;

@@ -1,0 +1,86 @@
+<%- include('../includes/html-header.ejs') %>
+<!-- navbar section -->
+<%- include('../includes/admin-header.ejs') %>
+
+    <div class="container service">
+        <h2><%= editMode ? 'Edit this promotion' : 'Create new promotion' %> </h2>
+        <% if(err) {%>
+            <h6 class="alert alert-danger"><%= err %></h6>
+        <% } %>
+        <hr>
+        <form action="<%= editMode ? '/admin/edit-promotion' : '/admin/create-promotion' %>" 
+            method="POST" 
+            enctype="multipart/form-data">
+
+            <div class="form-group">
+                <label for="title">Promotion title</label>
+                <input type="text" class="form-control" 
+                        name="title" 
+                        placeholder="Enter title"
+                        value="<%= editMode ? promotion.title : '' %>">
+            </div>
+            <div class="form-group">
+                <label for="desc">Promotion description</label>
+                <textarea type="text" 
+                            class="form-control" 
+                            name="desc" 
+                            placeholder="Enter description"
+                            rows="5"><%= editMode ? promotion.desc : '' %></textarea>
+            </div>
+            <% if(!editMode) { %>
+                <div class="form-group">
+                    <label for="lang">Language</label>
+                    <select name="lang" id="lang" class="form-control">
+                        <option value="vn">Viet Nam</option>
+                        <option value="en">English</option>
+                        <option value="ko">Korean</option>
+                    </select>
+                </div>
+            <% } %>
+
+            <div class="form-group">
+                <label for="img">Images</label>
+                <input name="image" type="file" accept="images/*" class="form-control" >
+                <% if(editMode) { %>
+                    <img src="<%= promotion.imgUrl %>" alt="old file" height="200">
+                <% } %>
+            </div>
+
+            <div class="form-group">
+                <label for="discount">Promotion discount (%)</label>
+                <input type="number" 
+                            class="form-control" 
+                            name="discount" 
+                            placeholder="Enter discount"
+                            value="<%= editMode ? promotion.discount : '' %>"></input>
+            </div>
+
+            <div class="form-group">
+                <label for="timeStart">Start at (DD/MM/YYYY)</label>
+                <input type="text" 
+                            class="form-control" 
+                            name="timeStart" 
+                            placeholder="Enter time"
+                            value="<%= editMode ? promotion.timeStart : '' %>"></input>
+            </div>
+
+            <div class="form-group">
+                <label for="timeEnd">End at (DD/MM/YYYY)</label>
+                <input type="text" 
+                            class="form-control" 
+                            name="timeEnd" 
+                            placeholder="Enter time"
+                            value="<%= editMode ? promotion.timeEnd : '' %>"></input>
+            </div>
+
+            <% if(editMode) { %>
+                <input type="hidden" value="<%= promotion._id %>" name="proId">                
+            <% } %>
+
+            <button class="btn btn-success" type="submit">
+                <%= editMode ? 'Update' : 'Create new' %>
+            </button>
+        </form>
+    </div>
+
+<%- include('../includes/html-footer.ejs') %>
