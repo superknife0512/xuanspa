@@ -1,9 +1,10 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const clientCtrl = require('../controllers/clientCtrl')
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.get('/', clientCtrl.getHomePage);
+
+router.get('/lang/:lang', clientCtrl.getLang);
 
 module.exports = router;

@@ -1,5 +1,5 @@
 .auth{
-    background-color: rgb(243, 243, 243);
+    background-color: rgb(215, 230, 226);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,11 +7,12 @@
 
     &__body{
         background-color: white;
-        box-shadow: 2px 7px 25px -9px rgba(0,0,0,0.22);
+        box-shadow: 2px 7px 25px -9px rgba(0,0,0,0.44);
         width: 40rem;
-        padding: 2rem 1.5rem;
+        padding: 2.8rem 2.5rem;
         margin: 0 1.2rem;        
         animation: fadeIn 1.5s forwards cubic-bezier(.21,.54,.02,1.01) ;
+        border-radius: 10px;
     }
     &__title{
         font-weight: 600;

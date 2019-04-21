@@ -1,11 +1,15 @@
 @import "~bootstrap/scss/bootstrap";
+@import './utils/utils.scss';
+@import './utils/mixins.scss';
 
 @import './reset/reset.scss';
 
 @import './pages/admin.scss';
 @import './pages/auth.scss';
+@import './pages/homePage.scss';
 
-@import './utils/utils.scss';
 
 @import './components/filter.scss';
 @import './components/popup.scss';
+@import './components/button.scss';
+@import './components/responsive.scss';

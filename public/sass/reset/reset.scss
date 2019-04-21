@@ -1,6 +1,9 @@
 $font-primary: 'Montserrat', sans-serif;
 $font-title: 'Dancing Script', cursive;
 
+$color-primary: #578737;
+$color-secondary: #c02859;
+
 html{
     padding: 0;
     margin: 0;
@@ -13,4 +16,8 @@ body{
     line-height: 1.5;
     font-weight: 300;
     font-size: 95%;
+
+    @include viewport(1379px){
+        font-size: 80%;
+    }
 }

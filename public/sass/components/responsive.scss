@@ -1,0 +1,99 @@
+.responsive{
+    display: none;
+    &__menu{
+        fill: white;
+        height: 2.5rem;
+        width: 2.5rem;
+        cursor: pointer;
+
+        @include viewport(435px){
+            height: 1.4rem;
+            width: 1.4rem;
+        }
+
+    }
+    @include viewport(1415px){
+        display: block;
+    }
+}
+
+.resmenu{
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba($color: #000000, $alpha: .7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    animation: flyOut .5s backwards;
+
+    &__body{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__link{
+        &:link, &:visited{
+            color: white;
+            text-transform: uppercase;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+
+        padding: 1rem;
+        transition: all .2s;
+        width: 12rem;
+        text-align: center;
+        &:not(:last-child){
+            border-bottom: 1px solid rgba($color: #fff, $alpha: .3)
+        }
+        &:hover{
+            background-color: #fff;
+            color: #333;
+        }
+    }
+    &__active-link{
+
+    }
+    &__active{
+        display: flex !important;
+        animation: flyIn .5s forwards;
+    }
+    &__close{
+        height: 2.7rem;
+        width: 2.7rem;
+        fill: white;
+        position: absolute;
+        top: 2rem;
+        right: 4rem;
+        cursor: pointer;
+
+        @include viewport(435px){
+            top: 1rem;
+            right: 2rem;
+            height: 1.7rem;
+            width: 1.7rem;
+        }
+    }
+}
+
+@keyframes flyIn {
+    0%{
+        transform: translateY(-50rem)
+    }
+    100%{
+        transform: translateY(0)
+    }
+}
+
+@keyframes flyOut {
+    0%{
+        transform: translateY(0)
+    }
+    100%{
+        transform: translateY(-50rem)
+    }
+}

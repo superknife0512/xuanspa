@@ -1,0 +1,9 @@
+@mixin boxshadow($blur, $opacity) {
+    box-shadow: 3px 3px $blur 0px rgba(0,0,0,$opacity);
+}
+
+@mixin viewport($vw){
+    @media only screen and (max-width: $vw) {
+        @content;   
+    }
+}

@@ -1,0 +1,113 @@
+<%- include('../includes/html-header.ejs') %>
+
+    <header class="hero">
+        <nav class="hero__header">
+            <div class="hero__brand">
+                <img src="public/images/Logo.png" alt="Logo" class="hero__img">
+                <h5>Xuân spa</h5>
+            </div>
+            <div class="hero__nav">
+                <a href="/" class="hero__link hero__active">
+                    Trang chủ
+                </a>
+                <a href="/about-us" class="hero__link">
+                    Giới thiệu
+                </a>
+                <a href="/services" class="hero__link">
+                    Dịch vụ
+                </a>
+                <a href="/product" class="hero__link">
+                    Sản phẩm
+                </a>
+                
+                <a href="/blog" class="hero__link">
+                    Cẩm nang
+                </a>
+                <a href="/contact" class="hero__link">
+                    Liên hệ
+                </a>
+                <a href="/recruit" class="hero__link">
+                    Tuyển dụng
+                </a>
+            </div>
+            <div class="responsive">
+                <svg class="responsive__menu">
+                    <use xlink:href="../../public/images/symbol.svg#icon-menu"></use>
+                </svg>
+            </div>
+            <%- include('../includes/vn/res-menu.ejs') %>
+        </nav>
+
+        <div class="hero__info">
+            <div class="hero__content">
+                <h5 class="hero__wel">
+                    Chào mừng đến
+                </h5>
+                <h1 class="hero__title">
+                    <%= adminData.title %>
+                </h1>
+                <p class="hero__subtitle"><%= adminData.subTitle %></p>
+                <a href="#book" class="btn-hero">
+                   Đặt ngay
+                </a>
+            </div>
+            <div class="hero__gallery">
+               
+                <div>
+                    <% adminData.gallerieUrls.forEach(img=>{ %>
+                        <img src="<%= img %>" alt="cax" 
+                            class="hero__gallery--img">
+                    <% }) %>
+                </div>
+
+                <div class="hero__control">
+                    <span class="hero__control--dot" data-dot="0"></span>
+                    <span class="hero__control--dot" data-dot="1"></span>
+                    <span class="hero__control--dot" data-dot="2"></span>
+                    <span class="hero__control--dot" data-dot="3"></span>
+                    <span class="hero__control--dot" data-dot="4"></span>
+                    <span class="hero__control--dot" data-dot="5"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero__footer">
+            <a href="/lang/vn" class="mr-2">
+                <img src="public/images/flag-vn.png" alt="flag-vn" 
+                        class="hero__flag active-flag">
+            </a>
+
+            <a href="/lang/en" class="mr-2">
+                <img src="public/images/flag-en.jpg" alt="flag-en" 
+                        class="hero__flag">
+            </a>
+
+            <a href="/lang/ko">
+                <img src="public/images/flag-ko.png" alt="flag-ko" 
+                        class="hero__flag">
+            </a>
+        </div>
+
+    </header>
+
+    <section class="book" id="book">
+        <h2 class="book__title">Đặt chỗ ngay!</h2>
+        <form action="/client/book" class="book__form container" method="POST">
+            <div class="book__inline">
+                <input type="text" class="book__input mr-2"
+                        placeholder="Tên của bạn">
+                <select name="service" id="service" class="book__option pr-4">
+                    <option value="Cax">Dịch vụ yêu cầu</option>
+                </select>
+            </div>
+            <input type="text" class="book__input"
+                        placeholder="Số điện thoại">
+            <textarea type="text" class="book__input--area pt-2"
+                        placeholder="Lời nhắn"
+                        rows="8"></textarea>
+
+            <button class="btn-book mt-2">Đặt ngay</button>
+        </form>
+    </section>
+
+<%- include('../includes/html-footer.ejs') %>
