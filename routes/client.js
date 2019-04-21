@@ -7,4 +7,7 @@ router.get('/', clientCtrl.getHomePage);
 
 router.get('/lang/:lang', clientCtrl.getLang);
 
+//about 
+router.get('/about-us', clientCtrl.getAbout);
+
 module.exports = router;

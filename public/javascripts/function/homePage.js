@@ -2,8 +2,8 @@ import $ from 'jquery';
 
 const allImgs = document.querySelectorAll('.hero__gallery--img');
 const allDot = document.querySelectorAll('.hero__control--dot');
+if(allDot[0] && allImgs[0]){
 
-if(allDot && allImgs){
     function displayImg(index){
         allImgs.forEach(img=>{
             img.classList.add('deactive-img');
@@ -24,6 +24,9 @@ if(allDot && allImgs){
         displayImg(indexImg);
         displayDot(indexImg);
     })
+    displayImg(indexImg);
+    displayDot(indexImg);
+    indexImg++;
     setInterval(()=>{
         if(indexImg + 1 >= allImgs.length){
             indexImg = 0;

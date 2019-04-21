@@ -49,12 +49,13 @@ app.use(async (req,res,next)=>{
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/admin/public', express.static(path.join(__dirname, 'public')));
+app.use('/admin', express.static(path.join(__dirname, 'public')));
 app.use('/admin/service/public', express.static(path.join(__dirname, 'public')));
 app.use('/admin/blog/public', express.static(path.join(__dirname, 'public')));
 app.use('/admin/promotion/public', express.static(path.join(__dirname, 'public')));
 app.use('/admin/product/public', express.static(path.join(__dirname, 'public')));
 
-app.use('/auth/public', express.static(path.join(__dirname, 'public')));
+app.use('/auth', express.static(path.join(__dirname, 'public')));
 
 
 app.use('/', clientRouter);

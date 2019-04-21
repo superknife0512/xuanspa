@@ -1,0 +1,38 @@
+<nav class="cli-header">
+    <header class="cli-header__head">
+        <div class="cli-header__brand">
+            <img src="images/Logo.png" alt="logo" 
+                class="cli-header__logo">
+            <h5>Xuân spa</h5>
+        </div>
+        <div class="cli-header__nav">
+            <a href="/" class="cli-header__link">
+                Trang chủ
+            </a>
+            <a href="/about-us" class="cli-header__link <%= activeTab === 'about' ? 'cli-header__active' : '' %>">
+                Giới thiệu
+            </a>
+            <a href="/service" class="cli-header__link <%= activeTab === 'service' ? 'cli-header__active' : '' %>">
+                Dịch vụ
+            </a>
+            <a href="/product" class="cli-header__link <%= activeTab === 'product' ? 'cli-header__active' : '' %>">
+                Sản phẩm
+            </a>
+            <a href="/blog" class="cli-header__link <%= activeTab === 'blog' ? 'cli-header__active' : '' %>" >
+                Cẩm nang
+            </a>
+            <a href="/contact" class="cli-header__link <%= activeTab === 'contact' ? 'cli-header__active' : '' %>">
+                Liên hệ
+            </a>
+            <a href="/recruit" class="cli-header__link <%= activeTab === 'recruit' ? 'cli-header__active' : '' %>">
+                Tuyển dụng
+            </a>
+        </div>
+    </header>
+
+    <div class="cli-header__title">
+        <h4>Giới thiệu spa</h4>
+        <img src="images/divider.png" alt="divider" 
+        class="cli-header__divider">
+    </div>
+</nav>

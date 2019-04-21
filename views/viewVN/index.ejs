@@ -98,7 +98,10 @@
                 <input type="text" class="book__input mr-2"
                         placeholder="Tên của bạn">
                 <select name="service" id="service" class="book__option pr-4">
-                    <option value="Cax">Dịch vụ yêu cầu</option>
+                    <option value="none">Dịch vụ yêu cầu</option>
+                    <% services.forEach(serv=>{ %>
+                        <option value="<%= serv._id %>"><%= serv.name %></option>
+                    <% }) %>
                 </select>
             </div>
             <input type="text" class="book__input"

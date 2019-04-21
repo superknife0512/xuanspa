@@ -1,4 +1,22 @@
 <%- include('../includes/html-header.ejs') %>
-    
+    <%- include('../includes/vn/client-header.ejs') %>
 
+        <div class="about container">
+            <div class="about__content" id="about"></div>
+            <input type="hidden" name="html" 
+                    value="<%= adminData.aboutContent.html %>">
+        </div>
+        <hr class="container">
+        <div class="gallery container">
+            <h2 class="gallery__title">
+                Ảnh trưng bày
+            </h2>
+            <div class="gallery__body">
+                <% adminData.gallerieUrls.forEach(img=>{ %>
+                    <img src="<%= img %>" alt="anh" class="gallery__img">
+                <% }) %>
+            </div>
+        </div>
+
+     <%- include('../includes/vn/client-footer.ejs') %>
 <%- include('../includes/html-footer.ejs') %>

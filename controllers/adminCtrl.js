@@ -105,7 +105,7 @@ exports.postEditAdmin = async (req,res,next)=>{
         adminData.aboutContent = aboutContent;
 
         if(lang==='vn'){
-            if(req.files['heroImg'][0] || req.files['gallery']){
+            if(req.files['heroImg'] || req.files['gallery']){
 
                 if(req.files['heroImg'][0]){
                     heroImg = req.files['heroImg'][0];

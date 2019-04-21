@@ -35,7 +35,7 @@
                     <use xlink:href="../../public/images/symbol.svg#icon-menu"></use>
                 </svg>
             </div>
-            <%- include('../includes/vn/res-menu.ejs') %>
+            <%- include('../includes/ko/res-menu.ejs') %>
         </nav>
 
         <div class="hero__info">
@@ -98,7 +98,10 @@
                 <input type="text" class="book__input mr-2"
                         placeholder="당신의 이름">
                 <select name="service" id="service" class="book__option pr-4">
-                    <option value="Cax">서비스 요구 사항</option>
+                    <option value="none">서비스 요구 사항</option>
+                    <% services.forEach(serv=>{ %>
+                        <option value="<%= serv._id %>"><%= serv.name %></option>
+                    <% }) %>
                 </select>
             </div>
             <input type="text" class="book__input"

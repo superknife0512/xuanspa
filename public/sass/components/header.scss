@@ -1,0 +1,74 @@
+$color-header: #b12e59;
+
+.cli-header{
+    background-image: linear-gradient( 90deg, rgba($color-header, .7) 0%, rgba($color-header, .7) 100%),
+                        url('/images/header.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 2.5rem 6.7rem;
+    height: 30rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &__head{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid rgba($color: #fff, $alpha: .3);
+    }
+    &__brand{
+        display: flex;
+        align-items: center;
+        h5{
+            font-family: $font-title;
+            font-size: 2rem;
+            color: white;
+            text-transform: capitalize;
+        }
+    }
+    &__logo{
+        height: 5rem;
+        margin-right: 1rem;
+    }
+    &__nav{
+        display: flex;
+    }
+    &__link{
+        &:link, &:visited{
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            padding: .5rem 1rem;
+            transition: all .2s;
+        }
+        &:hover{
+            background-color: #fff;
+            color: $color-secondary;
+        }
+        &:not(:last-child){
+            margin-right: .5rem;
+        }
+    }
+
+    &__title{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h4{
+            font-size: 5rem;
+            color: white;
+            font-family: $font-title;
+            text-align: center;
+            text-transform: capitalize;
+        }
+    }
+    &__divider{
+        width: 15rem;
+    }
+
+    &__active{
+        border: 1px solid rgba($color: #fff, $alpha: .7);
+    }
+}

@@ -1,0 +1,55 @@
+.footer{
+    display: flex;
+    padding: 3rem 0;
+
+    &__wrapper{
+        background-color: #f4f4f4;
+        
+        @include boxshadow(1rem, .4);
+    }
+
+    &__block{
+        width: 80%;
+        &:not(:last-child){
+            margin-right: 3rem;
+        }
+    }
+    &__title{
+        color: $color-secondary;
+        font-family: $font-title;
+        font-size: 2.8rem;
+        margin-bottom: 2rem;
+    }
+    &__info{
+        &:not(:last-child){
+            margin-right: rem;
+        }
+    }
+    &__info-block{
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.8rem;
+    }
+    &__icon{
+        height: 2.2rem;
+        width: 2.2rem;
+        fill: #343434;
+        margin-right: .7rem;
+    }
+    &__icon-info{
+        flex: 5;
+        font-size: 1.1rem;
+        margin-bottom: 0;
+        a{
+            &:link, &:visited{
+                color: #343434;
+            }
+        }
+    }
+    &__payment{
+        height: 5rem;
+        width: 7rem;
+        object-fit: cover;
+        
+    }
+}

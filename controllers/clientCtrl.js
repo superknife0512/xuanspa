@@ -1,4 +1,5 @@
 const AdminData = require('../models/AdminData');
+const Service = require('../models/Service')
 
 //2 helper function
 const getAdminDataVN = async ()=>{
@@ -6,6 +7,15 @@ const getAdminDataVN = async ()=>{
         const admin = await AdminData.findOne({lang: 'vn'});
         return admin        
     } catch (err){
+        throw err
+    }
+}
+
+const getServices = async (lang)=>{
+    try {
+        const services = await Service.find({lang: lang});
+        return services;
+    } catch (err) {
         throw err
     }
 }
@@ -21,7 +31,6 @@ const getAdminData = async (lang)=>{
 
 const langDir = (lang) => {
     let dir = 'viewVN';
-
     if(lang === 'en'){
         dir = 'viewEN';
     } else if (lang === 'ko'){
@@ -37,9 +46,11 @@ exports.getHomePage = async (req,res,next)=>{
         const lang = req.session.lang || 'vn';
         let langAdminData;
 
+        const services = await getServices(lang)
         if(lang !== 'vn'){
             langAdminData = await getAdminData(lang)
         }
+        
 
         const dir = langDir(lang);
         
@@ -50,13 +61,12 @@ exports.getHomePage = async (req,res,next)=>{
             heroImgUrl: adminDataVN.heroImgUrl,
             gallerieUrls: adminDataVN.gallerieUrls
         }
-
-        console.log(adminData);
         
         res.render(`${dir}/index`,{
             title: 'Home Page',
             adminData,
             lang,
+            services,
         })
     } catch (err) {
         next(err)
@@ -73,6 +83,34 @@ exports.getLang = async(req,res,next)=>{
             } else {
                 res.redirect('/')
             }
+        })
+    } catch (err) {
+        next(err)
+    }
+}
+
+exports.getAbout = async(req,res,next)=>{
+    try {
+        const lang = req.session.lang || 'vn';
+        const adminDataVN = await getAdminDataVN();
+        let langAdminData;
+        if(lang !== 'vn'){
+            langAdminData = await getAdminData(lang);
+        }
+        const dir = langDir(lang);
+
+        const aditionalInfo = langAdminData || adminDataVN;
+
+        const adminData = {
+            ...aditionalInfo._doc,
+            heroImgUrl: adminDataVN.heroImgUrl,
+            gallerieUrls: adminDataVN.gallerieUrls
+        }
+
+        res.render(`${dir}/about`,{
+            title: 'About',
+            adminData,
+            activeTab: 'about',
         })
     } catch (err) {
         next(err)
