@@ -1,6 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
 @import './utils/utils.scss';
 @import './utils/mixins.scss';
+@import './utils/grid-layout.scss';
 
 @import './reset/reset.scss';
 
@@ -8,6 +9,9 @@
 @import './pages/auth.scss';
 @import './pages/homePage.scss';
 @import './pages/about.scss';
+@import './pages/service.scss';
+@import './pages/serviceDetail.scss';
+@import './pages/product.scss';
 
 
 @import './components/filter.scss';

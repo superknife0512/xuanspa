@@ -1,5 +1,10 @@
+const mongoose = require('mongoose');
+
 const AdminData = require('../models/AdminData');
-const Service = require('../models/Service')
+const Service = require('../models/Service');
+const Product = require('../models/Product');
+const Message = require('../models/Message');
+const translate = require('../utils/translate');
 
 //2 helper function
 const getAdminDataVN = async ()=>{
@@ -8,6 +13,16 @@ const getAdminDataVN = async ()=>{
         return admin        
     } catch (err){
         throw err
+    }
+}
+
+const titleTrans = (lang, vn, en, ko)=>{
+    if(lang === 'vn'){
+        return vn
+    } else if (lang === 'en'){
+        return en
+    } else if (lang === 'ko'){
+        return ko
     }
 }
 
@@ -29,6 +44,7 @@ const getAdminData = async (lang)=>{
     }
 }
 
+
 const langDir = (lang) => {
     let dir = 'viewVN';
     if(lang === 'en'){
@@ -36,10 +52,11 @@ const langDir = (lang) => {
     } else if (lang === 'ko'){
         dir = 'viewKO'
     }
-
+    console.log('cax:', dir);
     return dir
 }
 
+// home page 
 exports.getHomePage = async (req,res,next)=>{
     try {
         let adminDataVN = await getAdminDataVN();
@@ -73,6 +90,7 @@ exports.getHomePage = async (req,res,next)=>{
     }
 }
 
+//lang setup
 exports.getLang = async(req,res,next)=>{
     try {
         const lang = req.params.lang;
@@ -89,6 +107,8 @@ exports.getLang = async(req,res,next)=>{
     }
 }
 
+
+//about page
 exports.getAbout = async(req,res,next)=>{
     try {
         const lang = req.session.lang || 'vn';
@@ -101,17 +121,174 @@ exports.getAbout = async(req,res,next)=>{
 
         const aditionalInfo = langAdminData || adminDataVN;
 
+        const headerTitle = titleTrans(lang, 'Giới thiệu Spa', 'Spa introduction', '스파 소개');
+
         const adminData = {
             ...aditionalInfo._doc,
             heroImgUrl: adminDataVN.heroImgUrl,
             gallerieUrls: adminDataVN.gallerieUrls
         }
 
+
+
         res.render(`${dir}/about`,{
             title: 'About',
             adminData,
             activeTab: 'about',
+            headerTitle,
         })
+    } catch (err) {
+        next(err)
+    }
+}
+
+
+// service page
+exports.getService = async (req,res,next)=>{
+    try {
+        const lang = req.session.lang || 'vn';
+        const dir = langDir(lang);
+        const services = await getServices(lang);
+        
+        function getServiceByTag(tag){
+            const serviceTag = [];
+            services.forEach(serv=>{
+                if(serv.tag === tag){
+                    serviceTag.push(serv)
+                }
+            })
+            return serviceTag
+        }
+
+        const serviceFace = translate.translateTagFace(getServiceByTag('face'),lang);
+        const serviceMassage = translate.translateTagMass(getServiceByTag('massage'),lang);
+        const serviceBody = translate.translateTagBody(getServiceByTag('body'),lang);
+        const servicePackage = translate.translateTagPackage(getServiceByTag('package'),lang);
+
+        const allServices = [
+            ...serviceFace,
+            ...serviceMassage,
+            ...serviceBody,
+            ...servicePackage
+        ]
+        const headerTitle = titleTrans(lang, 'Dịch vụ', 'Services', '서비스')
+
+        res.render(`${dir}/service`,{
+            title: 'Service',
+            activeTab: 'service',
+            headerTitle,
+            allServices,
+            serviceFace,
+            serviceBody,
+            serviceMassage,
+            servicePackage
+        })
+    } catch (err) {
+        next(err)
+    }
+}
+
+exports.getServiceDetail = async (req,res,next)=>{
+    try {
+        const lang = req.session.lang || 'vn';
+        const servId = req.params.servId;
+        const service = await Service.findById(servId);
+        const dir = langDir(lang);
+
+        service.views += 1;
+
+        let services = await Service.find({lang, tag: service.tag});
+        
+        let newServices = services.filter(serv=>{
+            return serv._id != servId
+        })
+        const seoNames  = newServices.map(serv=>{
+            return serv.name.replace(/ |\/|\,|\%/g, '-');
+        })
+
+        res.render(`${dir}/serviceDetail`,{
+            activeTab: 'service',
+            headerTitle: service.name,
+            title: service.name,
+            service,
+            services: newServices,
+            seoNames,
+        })
+
+        await service.save()
+
+    } catch (err) {
+        next(err)
+    }
+}
+
+exports.postMessage = async (req,res,next)=>{
+    try {
+        const name = req.body.name;
+        const phone = req.body.phone;
+        const servId = req.body.servId;
+        const email = req.body.email;
+
+        if(!name || !phone || !email){
+            return res.redirect('/services')
+        }
+        let objectId = mongoose.Types.ObjectId(servId);
+        let isBook = false;
+
+        if(servId){
+            isBook = true;
+        }
+
+
+        const message = req.body.mess;
+
+        const booking = new Message({
+            name,
+            phone,
+            service: objectId,
+            email,
+            message,
+            isBook
+        })
+        
+        await booking.save();
+
+        res.redirect(`/thankyou`);
+        
+    } catch (err) {
+        next(err)
+    }
+}
+
+exports.getThankyou = async (req,res,next)=>{
+    try {
+        const lang = req.session.lang || 'vn';
+        const dir = langDir(lang);
+        const headerTitle = titleTrans(lang, 'Cảm ơn bạn', 'Thank you', '고맙습니다')
+        res.render(`${dir}/thankyou`,{
+            title: 'Thank you',
+            headerTitle,
+            activeTab: 'service'
+        })
+    } catch (err) {
+        next(err);
+    }
+}
+
+//product page 
+exports.getProduct = async (req,res,next)=>{
+    try {
+        const lang = req.session.lang || 'vn';
+        const products = await Product.find({lang});
+        const dir = langDir(lang);
+
+        res.render(`${dir}/product`,{
+            activeTab: 'product',
+            headerTitle: 'Sản phẩm sử dụng',
+            title: 'Sản phẩm',
+            products
+        })
+        
     } catch (err) {
         next(err)
     }

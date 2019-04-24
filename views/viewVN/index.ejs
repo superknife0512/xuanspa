@@ -32,7 +32,7 @@
             </div>
             <div class="responsive">
                 <svg class="responsive__menu">
-                    <use xlink:href="../../public/images/symbol.svg#icon-menu"></use>
+                    <use xlink:href="images/symbol.svg#icon-menu"></use>
                 </svg>
             </div>
             <%- include('../includes/vn/res-menu.ejs') %>
@@ -93,11 +93,11 @@
 
     <section class="book" id="book">
         <h2 class="book__title">Đặt chỗ ngay!</h2>
-        <form action="/client/book" class="book__form container" method="POST">
+        <form action="/message" class="book__form container" method="POST">
             <div class="book__inline">
                 <input type="text" class="book__input mr-2"
-                        placeholder="Tên của bạn">
-                <select name="service" id="service" class="book__option pr-4">
+                        placeholder="Tên của bạn" name="name">
+                <select name="service" id="service" class="book__option pr-4" >
                     <option value="none">Dịch vụ yêu cầu</option>
                     <% services.forEach(serv=>{ %>
                         <option value="<%= serv._id %>"><%= serv.name %></option>
@@ -106,6 +106,8 @@
             </div>
             <input type="text" class="book__input"
                         placeholder="Số điện thoại">
+            <input type="email" class="book__input"
+                        placeholder="Email">
             <textarea type="text" class="book__input--area pt-2"
                         placeholder="Lời nhắn"
                         rows="8"></textarea>

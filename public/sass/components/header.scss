@@ -11,12 +11,26 @@ $color-header: #b12e59;
     flex-direction: column;
     justify-content: space-between;
 
+    @include viewport(661px){
+        padding: 1.5rem 3rem;
+        min-height: 21rem;
+    }
+
+    @include viewport(500px){
+        padding: 1rem 1.5rem;
+        min-height: 21rem;
+    }
+    
+
     &__head{
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding-bottom: 2rem;
         border-bottom: 1px solid rgba($color: #fff, $alpha: .3);
+        @include viewport(500px){
+            padding-bottom: 1.5rem;
+        }
     }
     &__brand{
         display: flex;
@@ -34,6 +48,9 @@ $color-header: #b12e59;
     }
     &__nav{
         display: flex;
+        @include viewport(1415px){
+            display: none;
+        }
     }
     &__link{
         &:link, &:visited{
@@ -62,6 +79,9 @@ $color-header: #b12e59;
             font-family: $font-title;
             text-align: center;
             text-transform: capitalize;
+            @include viewport(661px){
+                font-size: 3rem;
+            }
         }
     }
     &__divider{

@@ -1,0 +1,47 @@
+.product {
+    margin: 3rem auto;
+    margin-bottom: 5rem;
+
+    &__abstract{
+        margin: 0 auto;
+        text-align: center;
+        margin-bottom: 3.5rem;
+        b{
+            font-weight: 700;
+        }
+    }
+
+    &__show{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(20rem, 21rem));
+        grid-gap: 2.8rem;
+    }
+    &__card{
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        img{
+            height: 14rem;
+            width: 14rem;
+            object-fit: cover;
+            border-radius: 50%;
+            border: .5rem solid rgb(201, 250, 230);
+            transition: all .3s;
+
+            &:hover{
+                border: .5rem solid rgb(241, 179, 193);
+            }
+        }
+        h6{
+            font-family: $font-title;
+            color: $color-primary;
+            margin-top: 1rem;
+            font-size: 2rem;
+            text-transform: capitalize;
+            width: 70%;
+            text-align: center;
+        }
+    }
+}

@@ -30,7 +30,7 @@
 
     &:hover{
         transform: translateY(-.2rem);
-        @include boxshadow(10, .8);
+        @include boxshadow(10px, .3);
     }
 
     @include viewport(435px){

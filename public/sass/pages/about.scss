@@ -9,6 +9,11 @@
             width: 100%;
         }
     }
+    &__hr{
+        @include viewport(600px){
+            display: none;
+        }
+    }
 }
 
 .gallery{

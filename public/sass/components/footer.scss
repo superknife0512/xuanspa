@@ -1,6 +1,10 @@
 .footer{
     display: flex;
     padding: 3rem 0;
+    @include viewport(1000px){
+        flex-direction: column;
+        align-items: center;
+    }
 
     &__wrapper{
         background-color: #f4f4f4;
@@ -10,8 +14,17 @@
 
     &__block{
         width: 80%;
+        @include viewport(1000px){
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
         &:not(:last-child){
             margin-right: 3rem;
+            @include viewport(1000px){
+                margin-right: 0;
+                margin-bottom: 1.3rem;
+            }
         }
     }
     &__title{
@@ -19,10 +32,17 @@
         font-family: $font-title;
         font-size: 2.8rem;
         margin-bottom: 2rem;
+        @include viewport(600px){
+            font-size: 2rem;
+        }
     }
     &__info{
         &:not(:last-child){
-            margin-right: rem;
+            margin-right: 1rem;
+            @include viewport(1000px){
+                margin-right: 0;
+                margin-bottom: 1.3rem;
+            }
         }
     }
     &__info-block{

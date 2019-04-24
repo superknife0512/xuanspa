@@ -50,12 +50,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/admin/public', express.static(path.join(__dirname, 'public')));
 app.use('/admin', express.static(path.join(__dirname, 'public')));
+app.use('/admin/service', express.static(path.join(__dirname, 'public')));
 app.use('/admin/service/public', express.static(path.join(__dirname, 'public')));
 app.use('/admin/blog/public', express.static(path.join(__dirname, 'public')));
+app.use('/admin/blog', express.static(path.join(__dirname, 'public')));
 app.use('/admin/promotion/public', express.static(path.join(__dirname, 'public')));
+app.use('/admin/promotion/', express.static(path.join(__dirname, 'public')));
 app.use('/admin/product/public', express.static(path.join(__dirname, 'public')));
+app.use('/admin/product/', express.static(path.join(__dirname, 'public')));
 
 app.use('/auth', express.static(path.join(__dirname, 'public')));
+
+app.use('/services', express.static(path.join(__dirname, 'public')));
+app.use('/services/public', express.static(path.join(__dirname, 'public')));
 
 
 app.use('/', clientRouter);

@@ -1,0 +1,60 @@
+<%- include('../includes/html-header.ejs') %>
+    <%- include('../includes/vn/client-header.ejs') %>
+
+        <div class="servDetail grid">
+
+            <div class="servDetail__left">
+                <div class="servDetail__heading">
+                    <div class="servDetail__info">
+                        <svg>
+                            <use xlink:href="images/symbol.svg#icon-eye"></use>
+                        </svg>
+                        <p> <%= service.views %> Lượt xem </p>
+                    </div>
+                    <div class="servDetail__info">
+                        <svg>
+                            <use xlink:href="images/symbol.svg#icon-spa"></use>
+                        </svg>
+                        <p><span class="Price"><%= service.price %></span>  vnd / 30 phut </p>
+                    </div>
+                </div>
+
+                <div class="servDetail__imgs">
+                    <% service.imgUrls.forEach(img=>{ %>
+                        <img src="<%= img %>" 
+                            class="servDetail__img" alt="cax">
+                    <% }) %>
+                </div>
+
+                <div class="servDetail__detail">
+                    <h4 class="servDetail__title">Chi tiếc dịch vụ</h4>
+                    <% service.desc.forEach(each=>{ %>
+                        <p><%= each %></p>
+                    <% }) %>
+
+                    <button class="btn-book" id="btn-book">Đặt ngay</button>
+                </div>
+            </div>
+
+            <div class="servDetail__right">
+                <h4 class="servDetail__title">Có thể bạn sẽ thích</h4>
+                <hr>
+                <% services.forEach((serv, i)=>{  %>
+                    <div class="servDetail__card">
+                        <img src="<%= serv.imgUrls[0] %>" alt="">
+                        <a href="/services/<%= seoNames[i] %>.<%= serv._id %>">
+                            <h5><%= serv.name %></h5>
+                        </a>
+                        <p class="desc"><%= serv.desc.join('') %></p>
+                    </div>
+                <% }) %>
+            </div>
+
+            <%- include('../includes/vn/bookPopup.ejs', {
+                service: service
+            }) %>
+           
+        </div>
+
+     <%- include('../includes/vn/client-footer.ejs') %>
+<%- include('../includes/html-footer.ejs') %>

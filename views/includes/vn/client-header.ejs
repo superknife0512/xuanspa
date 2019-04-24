@@ -12,7 +12,7 @@
             <a href="/about-us" class="cli-header__link <%= activeTab === 'about' ? 'cli-header__active' : '' %>">
                 Giới thiệu
             </a>
-            <a href="/service" class="cli-header__link <%= activeTab === 'service' ? 'cli-header__active' : '' %>">
+            <a href="/services" class="cli-header__link <%= activeTab === 'service' ? 'cli-header__active' : '' %>">
                 Dịch vụ
             </a>
             <a href="/product" class="cli-header__link <%= activeTab === 'product' ? 'cli-header__active' : '' %>">
@@ -28,10 +28,16 @@
                 Tuyển dụng
             </a>
         </div>
+        <div class="responsive">
+            <svg class="responsive__menu">
+                <use xlink:href="images/symbol.svg#icon-menu"></use>
+            </svg>
+        </div>
+        <%- include('./res-menu.ejs') %>
     </header>
 
     <div class="cli-header__title">
-        <h4>Giới thiệu spa</h4>
+        <h4><%= headerTitle %></h4>
         <img src="images/divider.png" alt="divider" 
         class="cli-header__divider">
     </div>

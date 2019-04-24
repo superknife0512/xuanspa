@@ -1,0 +1,12 @@
+
+.grid{
+    display: grid;
+    grid-template-columns: minmax(1.5rem, 1fr) repeat(10, minmax(max-content, 1fr)) minmax(1.5rem, 1fr);
+
+    &__container{
+        grid-column: 2/11;
+    }
+    &__fluid{
+        grid-column: 1/12;
+    }
+}

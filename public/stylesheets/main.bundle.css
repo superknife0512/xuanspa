@@ -7038,6 +7038,14 @@ input[type="file"] {
 .activePopup {
   display: flex !important; }
 
+.grid {
+  display: grid;
+  grid-template-columns: minmax(1.5rem, 1fr) repeat(10, minmax(max-content, 1fr)) minmax(1.5rem, 1fr); }
+  .grid__container {
+    grid-column: 2/11; }
+  .grid__fluid {
+    grid-column: 1/12; }
+
 html {
   padding: 0;
   margin: 0;
@@ -7374,12 +7382,15 @@ body {
   margin-top: 3rem; }
   .about__content img {
     width: 100%; }
+  @media only screen and (max-width: 600px) {
+    .about__hr {
+      display: none; } }
 
 .gallery {
   margin-bottom: 5rem;
   margin-top: 3rem; }
   .gallery__title {
-    color: #578737;
+    color: #10b359;
     font-family: "Dancing Script", cursive;
     font-size: 3.2rem;
     margin-bottom: 2rem;
@@ -7394,6 +7405,324 @@ body {
     height: 16rem;
     object-fit: cover; }
 
+.client-service {
+  margin: 0 auto;
+  margin-top: 2rem;
+  margin-bottom: 7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .client-service__abstract p {
+    text-align: center; }
+  .client-service__abstract strong {
+    font-weight: 600; }
+  .client-service__body {
+    width: 110%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    @media only screen and (max-width: 850px) {
+      .client-service__body {
+        flex-direction: row; } }
+    @media only screen and (max-width: 660px) {
+      .client-service__body {
+        margin-top: 3rem;
+        align-items: flex-start; } }
+  .client-service__tabs {
+    display: flex;
+    justify-content: center;
+    padding: 0rem;
+    margin-top: 3.3rem;
+    border-bottom: 1px solid rgba(192, 40, 89, 0.3);
+    padding-bottom: 1.1rem;
+    width: 90%;
+    z-index: 0;
+    margin-bottom: 2rem; }
+    @media only screen and (max-width: 850px) {
+      .client-service__tabs {
+        border-bottom: 0;
+        padding-bottom: 0;
+        width: auto;
+        flex-direction: column;
+        padding-left: 1rem;
+        margin-top: 5rem;
+        border-right: none; } }
+    @media only screen and (max-width: 660px) {
+      .client-service__tabs {
+        margin-top: 0;
+        flex: 2;
+        position: sticky;
+        top: 1rem; } }
+  .client-service__tab {
+    list-style: none;
+    font-size: 1rem;
+    transition: all .2s;
+    position: relative;
+    cursor: pointer; }
+    .client-service__tab:not(:last-child) {
+      margin-right: 3.5rem; }
+      @media only screen and (max-width: 850px) {
+        .client-service__tab:not(:last-child) {
+          margin-bottom: 3rem; } }
+    .client-service__tab:hover {
+      color: #c02859; }
+    @media only screen and (max-width: 850px) {
+      .client-service__tab {
+        margin-right: 1.2rem !important; } }
+    @media only screen and (max-width: 660px) {
+      .client-service__tab {
+        text-align: left;
+        font-size: .9rem;
+        padding: .2rem .3rem;
+        border: 1px solid rgba(192, 40, 89, 0.09);
+        border-radius: 2px; } }
+  .client-service__show {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(35rem, 1fr));
+    grid-template-rows: auto;
+    grid-column-gap: 3rem;
+    grid-row-gap: 4rem;
+    max-width: 1103px;
+    margin-top: 2.5rem;
+    display: none; }
+    @media only screen and (max-width: 1200px) {
+      .client-service__show {
+        grid-template-columns: repeat(2, 1fr); } }
+    @media only screen and (max-width: 850px) {
+      .client-service__show {
+        grid-template-columns: repeat(1, 1fr);
+        border-left: 1px solid rgba(192, 40, 89, 0.3);
+        padding-left: .8rem; } }
+    @media only screen and (max-width: 660px) {
+      .client-service__show {
+        margin-top: 0;
+        padding-right: 1rem;
+        flex: 3; } }
+  .client-service__card {
+    display: flex;
+    align-items: center; }
+    @media only screen and (max-width: 660px) {
+      .client-service__card {
+        flex-direction: column;
+        align-items: flex-start; } }
+  .client-service__card-img {
+    height: 10rem;
+    width: 10rem;
+    object-fit: cover;
+    margin-right: 1rem; }
+    @media only screen and (max-width: 660px) {
+      .client-service__card-img {
+        margin-right: 0;
+        margin-bottom: 1rem;
+        width: 100%; } }
+  .client-service__name {
+    font-size: 1.7rem;
+    color: #10b359;
+    font-family: "Dancing Script", cursive; }
+  .client-service__tag {
+    padding: .5rem 1rem;
+    border-top-right-radius: 500px;
+    border-bottom-right-radius: 600px;
+    background-color: #ededed;
+    color: #9b9b9b;
+    margin-bottom: .5rem;
+    display: inline-block; }
+  .client-service__time {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.8rem; }
+    .client-service__time svg {
+      fill: #afafaf;
+      height: 1.7rem;
+      width: 1.7rem;
+      margin-right: 0.5rem; }
+    .client-service__time p {
+      color: #818181;
+      font-weight: 600;
+      margin: 0; }
+  .client-service__link {
+    display: flex;
+    align-items: center; }
+    .client-service__link:link, .client-service__link:visited {
+      text-decoration: none; }
+    .client-service__link h6 {
+      color: #c02859;
+      font-size: .9rem;
+      font-weight: 600;
+      margin: 0;
+      margin-right: .5rem;
+      transition: all .4s; }
+    .client-service__link svg {
+      fill: #c02859;
+      height: 1rem;
+      width: 1rem; }
+    .client-service__link:hover h6 {
+      margin-right: 1rem; }
+
+.thank {
+  margin: 10rem auto;
+  max-width: 50rem;
+  padding: 4rem 3rem;
+  background-color: #f0f0f0;
+  border-radius: 5px; }
+  .thank__title {
+    text-align: center;
+    font-family: "Dancing Script", cursive;
+    font-size: 2rem;
+    color: #c02859; }
+
+.tab-active {
+  color: #c02859; }
+  @media only screen and (max-width: 850px) {
+    .tab-active {
+      border: 1px solid rgba(192, 40, 89, 0.3); } }
+  .tab-active::before {
+    content: "";
+    height: 61px;
+    background-color: white;
+    width: 130%;
+    border: 1px solid rgba(192, 40, 89, 0.3);
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+    border-bottom: 0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px; }
+    @media only screen and (max-width: 1200px) {
+      .tab-active::before {
+        height: 62px; } }
+    @media only screen and (max-width: 850px) {
+      .tab-active::before {
+        display: none; } }
+
+.activeService {
+  display: grid !important; }
+
+.servDetail {
+  margin-top: 3.4rem;
+  margin-bottom: 6rem; }
+  .servDetail__left {
+    grid-column: 2/9;
+    padding-right: 2.5rem; }
+    @media only screen and (max-width: 1100px) {
+      .servDetail__left {
+        grid-column: 2/12;
+        padding-right: 0;
+        margin-bottom: 3rem; } }
+  .servDetail__heading {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem; }
+  .servDetail__info {
+    margin-right: 4rem;
+    display: flex;
+    align-items: center; }
+    @media only screen and (max-width: 500px) {
+      .servDetail__info {
+        margin-right: 2rem; } }
+    .servDetail__info svg {
+      fill: #a0a0a0;
+      height: 2rem;
+      width: 2rem;
+      margin-right: 0.5rem; }
+    .servDetail__info p {
+      color: #a0a0a0;
+      margin-bottom: 0; }
+  .servDetail__imgs {
+    height: 35rem;
+    width: 100%;
+    border: 1.5rem solid #f3f3f3;
+    margin-bottom: 2rem; }
+    @media only screen and (max-width: 1400px) {
+      .servDetail__imgs {
+        height: 30rem; } }
+    @media only screen and (max-width: 500px) {
+      .servDetail__imgs {
+        height: 13rem;
+        border: 1rem solid #f3f3f3; } }
+  .servDetail__img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    animation: snapIn .5s ease;
+    display: none; }
+  .servDetail__detail p {
+    margin-bottom: 2rem; }
+  .servDetail__title {
+    font-family: "Dancing Script", cursive;
+    color: #10b359;
+    font-size: 1.9rem;
+    margin-bottom: 1.5rem; }
+  .servDetail__right {
+    grid-column: 9/12;
+    padding: 1rem 1.5rem; }
+    @media only screen and (max-width: 1100px) {
+      .servDetail__right {
+        grid-column: 2/12;
+        padding: 1rem 0; } }
+  .servDetail__card {
+    margin-bottom: 2.5rem; }
+    .servDetail__card img {
+      height: 15rem;
+      width: 100%;
+      margin-bottom: 1rem;
+      object-fit: cover;
+      box-shadow: 3px 3px 9px 0px rgba(0, 0, 0, 0.2); }
+      @media only screen and (max-width: 1400px) {
+        .servDetail__card img {
+          height: 11rem; } }
+    .servDetail__card a:link, .servDetail__card a:visited {
+      text-decoration: none; }
+    .servDetail__card h5 {
+      text-transform: uppercase;
+      color: #c02859;
+      margin-bottom: 0.5rem; }
+    .servDetail__card p {
+      color: #666; }
+
+.activeImg {
+  display: block !important; }
+
+.product {
+  margin: 3rem auto;
+  margin-bottom: 5rem; }
+  .product__abstract {
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 3.5rem; }
+    .product__abstract b {
+      font-weight: 700; }
+  .product__show {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 21rem));
+    grid-gap: 2.8rem; }
+  .product__card {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    .product__card img {
+      height: 14rem;
+      width: 14rem;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 0.5rem solid #c9fae6;
+      transition: all .3s; }
+      .product__card img:hover {
+        border: 0.5rem solid #f1b3c1; }
+    .product__card h6 {
+      font-family: "Dancing Script", cursive;
+      color: #10b359;
+      margin-top: 1rem;
+      font-size: 2rem;
+      text-transform: capitalize;
+      width: 70%;
+      text-align: center; }
+
 .filter {
   margin-top: 2rem;
   display: flex; }
@@ -7402,36 +7731,102 @@ body {
   .filter__tag {
     margin-right: 3rem; }
 
-.popup {
+.popup__wrapper, .book-pop, .prod-pop {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  justify-content: center;
+  align-items: center;
+  z-index: 500;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0 .5rem; }
+
+.popup, .book-pop__body, .prod-pop__body {
   max-width: 60rem;
-  padding: 2rem 3rem;
+  padding: 3.5rem 3rem;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 7px;
   display: flex;
-  flex-direction: column; }
-  .popup__wrapper {
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.2);
-    justify-content: center;
-    align-items: center;
-    z-index: 500;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding: 0 .5rem;
-    display: none; }
-  .popup__title {
-    color: #d1283e;
-    font-weight: 700; }
-  .popup__desc {
-    padding: 1.5rem 0;
-    margin: 1.2rem 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.2);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
-  .popup__action {
+  flex-direction: column;
+  animation: popup 0.5s cubic-bezier(0.21, 0.54, 0.23, 1.19); }
+  @media only screen and (max-width: 600px) {
+    .popup, .book-pop__body, .prod-pop__body {
+      padding: 2rem 1.5rem; } }
+
+.popup__wrapper {
+  display: none; }
+
+.popup__title {
+  color: #d1283e;
+  font-weight: 700; }
+
+.popup__desc {
+  padding: 1.5rem 0;
+  margin: 1.2rem 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
+
+.popup__action {
+  display: flex;
+  align-self: flex-end; }
+
+.book-pop {
+  display: none; }
+  .book-pop__body {
+    position: relative; }
+  .book-pop__title {
+    font-size: 1.4rem;
+    color: #c02859;
+    text-transform: uppercase; }
+  .book-pop__form {
+    margin-top: 2rem; }
+  .book-pop__close {
+    color: #da1616;
+    position: absolute;
+    top: .1rem;
+    right: 1rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer; }
+
+.prod-pop {
+  display: none; }
+  .prod-pop__body {
+    position: relative; }
+  .prod-pop__title {
+    color: #10b359;
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+    font-family: "Dancing Script", cursive; }
+  .prod-pop__name {
+    color: #c02859;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem; }
+  .prod-pop__brand {
     display: flex;
-    align-self: flex-end; }
+    align-items: center;
+    margin-bottom: 1.2rem; }
+    .prod-pop__brand strong {
+      font-weight: 700;
+      font-size: 1.2rem; }
+    .prod-pop__brand svg {
+      fill: #5c5c5c;
+      height: 1.5rem;
+      width: 1.5rem;
+      margin-right: 0.5rem; }
+  .prod-pop__content {
+    color: #444; }
+
+@keyframes popup {
+  0% {
+    transform: scale(0.4);
+    opacity: 0; }
+  100% {
+    transform: scale(1);
+    opacity: 1; } }
 
 .btn-hero {
   padding: .8rem 2rem;
@@ -7460,7 +7855,7 @@ body {
   border: none; }
   .btn-book:hover {
     transform: translateY(-0.2rem);
-    box-shadow: 3px 3px 10 0px rgba(0, 0, 0, 0.8); }
+    box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.3); }
   @media only screen and (max-width: 435px) {
     .btn-book {
       padding: .5rem 1.5rem; } }
@@ -7550,12 +7945,23 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between; }
+  @media only screen and (max-width: 661px) {
+    .cli-header {
+      padding: 1.5rem 3rem;
+      min-height: 21rem; } }
+  @media only screen and (max-width: 500px) {
+    .cli-header {
+      padding: 1rem 1.5rem;
+      min-height: 21rem; } }
   .cli-header__head {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-bottom: 2rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
+    @media only screen and (max-width: 500px) {
+      .cli-header__head {
+        padding-bottom: 1.5rem; } }
   .cli-header__brand {
     display: flex;
     align-items: center; }
@@ -7569,6 +7975,9 @@ body {
     margin-right: 1rem; }
   .cli-header__nav {
     display: flex; }
+    @media only screen and (max-width: 1415px) {
+      .cli-header__nav {
+        display: none; } }
   .cli-header__link:link, .cli-header__link:visited {
     color: white;
     text-decoration: none;
@@ -7590,6 +7999,9 @@ body {
       font-family: "Dancing Script", cursive;
       text-align: center;
       text-transform: capitalize; }
+      @media only screen and (max-width: 661px) {
+        .cli-header__title h4 {
+          font-size: 3rem; } }
   .cli-header__divider {
     width: 15rem; }
   .cli-header__active {
@@ -7598,20 +8010,40 @@ body {
 .footer {
   display: flex;
   padding: 3rem 0; }
+  @media only screen and (max-width: 1000px) {
+    .footer {
+      flex-direction: column;
+      align-items: center; } }
   .footer__wrapper {
     background-color: #f4f4f4;
     box-shadow: 3px 3px 1rem 0px rgba(0, 0, 0, 0.4); }
   .footer__block {
     width: 80%; }
+    @media only screen and (max-width: 1000px) {
+      .footer__block {
+        display: flex;
+        flex-direction: column;
+        align-items: center; } }
     .footer__block:not(:last-child) {
       margin-right: 3rem; }
+      @media only screen and (max-width: 1000px) {
+        .footer__block:not(:last-child) {
+          margin-right: 0;
+          margin-bottom: 1.3rem; } }
   .footer__title {
     color: #c02859;
     font-family: "Dancing Script", cursive;
     font-size: 2.8rem;
     margin-bottom: 2rem; }
+    @media only screen and (max-width: 600px) {
+      .footer__title {
+        font-size: 2rem; } }
   .footer__info:not(:last-child) {
-    margin-right: rem; }
+    margin-right: 1rem; }
+    @media only screen and (max-width: 1000px) {
+      .footer__info:not(:last-child) {
+        margin-right: 0;
+        margin-bottom: 1.3rem; } }
   .footer__info-block {
     display: flex;
     align-items: center;
