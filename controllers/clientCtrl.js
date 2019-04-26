@@ -4,6 +4,8 @@ const AdminData = require('../models/AdminData');
 const Service = require('../models/Service');
 const Product = require('../models/Product');
 const Message = require('../models/Message');
+const Blog = require('../models/Blog');
+const Promotion = require('../models/Promotion');
 const translate = require('../utils/translate');
 
 //2 helper function
@@ -239,7 +241,6 @@ exports.postMessage = async (req,res,next)=>{
             isBook = true;
         }
 
-
         const message = req.body.mess;
 
         const booking = new Message({
@@ -266,7 +267,7 @@ exports.getThankyou = async (req,res,next)=>{
         const dir = langDir(lang);
         const headerTitle = titleTrans(lang, 'Cảm ơn bạn', 'Thank you', '고맙습니다')
         res.render(`${dir}/thankyou`,{
-            title: 'Thank you',
+            title: headerTitle,
             headerTitle,
             activeTab: 'service'
         })
@@ -287,6 +288,106 @@ exports.getProduct = async (req,res,next)=>{
             headerTitle: 'Sản phẩm sử dụng',
             title: 'Sản phẩm',
             products
+        })
+        
+    } catch (err) {
+        next(err)
+    }
+}
+
+//blogs page
+exports.getBlogs = async (req,res,next)=>{
+    try {
+        const page = req.query.page || 1;
+        const PER_PAGE = 6;
+
+        const lang = req.session.lang || 'vn';
+        const blogs = await Blog.find({lang})
+                            .skip((page-1)*PER_PAGE)
+                            .limit(PER_PAGE)
+                            .sort('-createdAt');
+
+        
+        const numPage = Math.ceil(blogs.length / 6);
+        const dir = langDir(lang);
+
+        const headerTitle = titleTrans(lang, 'Cẩm nang', 'Blog', '수첩')
+
+        res.render(`${dir}/blogs`,{
+            activeTab: 'blog',
+            headerTitle: headerTitle,
+            title: headerTitle,
+            blogs,
+            numPage,
+            page,
+        })
+        
+    } catch (err) {
+        next(err)
+    }
+}
+
+exports.getBlogDetail = async (req,res,next)=>{
+    try {
+        const blogId = req.params.blogId;
+        const lang = req.session.lang || 'vn';
+        const blogs = await Blog.find({lang}).sort('-createdAt').limit(7);
+        
+        const others = blogs.filter(blog=>{
+            return blog._id != blogId
+        })
+        const blog = blogs.find(blog=>{
+            return blog._id == blogId
+        })
+        const dir = langDir(lang);
+
+        const headerTitle = titleTrans(lang, 'Bài viết chi tiết', 'Into the detail', '상세 기사');
+        
+        res.render(`${dir}/blogDetail`,{
+            activeTab: 'blog',
+            headerTitle: headerTitle,
+            title: headerTitle,
+            blog,
+            others
+        })
+        
+    } catch (err) {
+        next(err)
+    }
+}
+
+//promotion page
+exports.getPromotion = async (req,res,next)=>{
+    try {
+        const lang = req.session.lang || 'vn';
+        const dir = langDir(lang);
+        const promotions = await Promotion.find({lang}).sort('-createdAt').limit(10);
+
+        const headerTitle = titleTrans(lang, 'Khuyến mãi', 'Promotion', '승진');
+        res.render(`${dir}/promotion`,{
+            activeTab: 'promotion',
+            headerTitle: headerTitle,
+            title: headerTitle,
+            promotions,
+        })
+        
+    } catch (err) {
+        next(err)
+    }
+}
+
+//get Contact
+exports.getContact = async (req,res,next)=>{
+    try {
+        const lang = req.session.lang || 'vn';
+        const dir = langDir(lang);
+
+        const headerTitle = titleTrans(lang, 'Liên hệ', 'Contact us', '문의하기');
+        
+        res.render(`${dir}/contact`,{
+            activeTab: 'contact',
+            headerTitle: headerTitle,
+            title: headerTitle,
         })
         
     } catch (err) {

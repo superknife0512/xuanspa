@@ -1,0 +1,32 @@
+<%- include('../includes/html-header.ejs') %>
+    <%- include('../includes/vn/client-header.ejs') %>
+
+        <div class="promotion container">
+            <div class="product__abstract">
+                <p>
+                    <b>Một chút thông tin về sản phẩm</b>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque vel similique consequatur, repudiandae dolorem iste ducimus commodi perferendis accusantium sequi amet nam officiis veniam voluptas eaque asperiores repellendus reprehenderit consequuntur!
+                </p>                
+            </div>
+            <div class="promotion__show">
+                <% promotions.forEach(prom=>{ %>
+                    <div class="promotion__card">
+                        <img src="<%= prom.imgUrl %>" alt="anh">
+                        <div class="promotion__card-info">
+                            <h4> <%= prom.title %> </h4>
+                            <p><%= prom.desc %></p>
+                            <h5>Bắt đầu từ <%= prom.timeStart %> đến <%= prom.timeEnd %></h5>
+                        </div>
+                        <span class="promotion__discount"> 
+                            <span>
+                                <%= prom.discount %> % 
+                            </span>
+                        </span>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+
+
+     <%- include('../includes/vn/client-footer.ejs') %>
+<%- include('../includes/html-footer.ejs') %>

@@ -11,6 +11,7 @@ import'./function/priceFilter'
 import'./function/serviceImg'
 import'./function/bookFunction'
 
-import { shortenText } from './function/descFilter.js'
+import { shortenText, dateFilter } from './function/descFilter.js'
 
-shortenText()
+shortenText();
+dateFilter();

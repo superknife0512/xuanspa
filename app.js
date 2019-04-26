@@ -61,6 +61,8 @@ app.use('/admin/product/', express.static(path.join(__dirname, 'public')));
 
 app.use('/auth', express.static(path.join(__dirname, 'public')));
 
+app.use('/blog', express.static(path.join(__dirname, 'public')));
+app.use('/blog/public', express.static(path.join(__dirname, 'public')));
 app.use('/services', express.static(path.join(__dirname, 'public')));
 app.use('/services/public', express.static(path.join(__dirname, 'public')));
 

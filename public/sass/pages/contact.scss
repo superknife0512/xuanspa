@@ -1,0 +1,168 @@
+%title{
+    font-size: 2.3rem;
+    font-family: $font-title;
+}
+%decor{
+    content: "";
+    height: 10rem;
+    width: 10rem;
+    opacity: .5;
+
+    @include viewport(1081px){
+        display: none;
+    }
+}
+
+%flower{
+    height: 11rem;
+    width: 11rem;
+    position: absolute;
+    z-index: 700;
+
+    @include viewport(1081px){
+        display: none;
+    }
+}
+
+.contact{
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    position: relative;
+
+    &__body{
+        grid-column: 2/12;
+        position: relative;
+        padding: 0 2rem;
+        @include viewport(880px){
+            grid-column: 1/13;
+        }
+
+        @include viewport(600px){
+            padding: 0 1rem;
+        }
+
+        &::before{
+            @extend %decor;
+            border-left: solid 1px $color-secondary;
+            border-bottom: solid 1px $color-secondary;
+            position: absolute;
+            bottom: 0;
+            left: 2rem;
+            transform: translateY(-6rem);
+        }
+    
+        &::after{
+            @extend %decor;
+            border-top: solid 1px $color-secondary;
+            border-right: solid 1px $color-secondary;
+            position: absolute;
+            top: 0;
+            right: 2rem;
+        }
+    }
+    
+
+    &__flw1{
+        @extend %flower;
+        bottom: -17px;
+        left: -15px;
+        transform: translateY(-6rem);
+    }
+
+    &__flw2{
+        @extend %flower;
+        top: -21px;
+        right: 18px;
+        
+    }
+
+
+    &__form{
+        grid-column: 1/8;
+        background-color: rgb(245, 245, 245);
+        @include boxshadow(20px, .3);
+        padding: 3rem 2.5rem;
+        border-radius: 5px;
+
+        @include viewport(880px){
+            grid-column: 2/12
+        }
+        @include viewport(519px){
+            grid-column: 1/13;
+            padding: 2rem 1.2rem;
+        }
+    }
+    &__title{
+        color: $color-primary;
+        @extend %title;
+    }
+    .book__form{
+        padding: 0;
+        input:focus{
+            border: 1px solid $color-secondary;
+        }
+        textarea:focus{
+            border: 1px solid $color-secondary;
+        }
+    }
+
+    &__info{
+        grid-column: 6/13;
+        background-image: linear-gradient(90deg, rgba($color-primary, .75) 0%, rgba($color-primary, .75) 100%),
+                            url('/images/pattern.jpg');
+        background-size: cover;
+        padding: 3rem 2.5rem;
+        color: white;
+        border-radius: 5px;
+        @include boxshadow(10px , .2);
+        transform: translateY(-6rem);
+        position: relative;
+        @include viewport(880px){
+            grid-column: 2/12;
+            transform: translateY(-1rem)
+        }
+        @include viewport(600px){
+            grid-column: 1/13;
+            padding: 2rem 1.2rem;
+        }
+    }
+    &__info-title{
+        @extend %title;
+        margin-bottom: 2rem;
+    }
+    &__about{
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid rgba(255,255,255, .3);
+    }
+    &__more{
+        svg{
+            fill: white;
+        }
+    }
+
+    &__fb{
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        svg{
+            fill: white;
+            height: 3rem;
+            width: 3rem
+        }
+    }
+    input[name=phone]{
+        @include viewport(600px){
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+#map{
+    height: 30rem;
+    z-index: -1;
+
+    @include viewport(1081px){
+        height: 25rem;
+    }
+}

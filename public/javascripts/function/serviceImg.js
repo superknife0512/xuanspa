@@ -12,6 +12,7 @@ if(allImgs[0]){
     }
 
     displayImg(index);
+    index+=1
 
     setInterval(() => {
         displayImg(index);

@@ -1,0 +1,42 @@
+<%- include('../includes/html-header.ejs') %>
+    <%- include('../includes/vn/client-header.ejs') %>
+
+    <div class="blog container">
+        <div class="blog__abstract">
+            <p>
+                <strong>Nơi chúng tôi chia sẽ kiến thức về mỹ phẩm,...</strong>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores blanditiis earum, odio quod eaque beatae reprehenderit dolorum aliquam inventore incidunt animi velit doloremque magnam voluptate. Necessitatibus, amet placeat! Est, sapiente Necessitatibus!
+            </p>            
+        </div>
+        <div class="blog__show">
+            <% blogs.forEach(blog=>{ %>
+
+                <%- include('../includes/vn/blogCard',{
+                    blog: blog
+                }) %>
+
+            <% }) %>
+        </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item <%= page == 1 ? 'disabled' : '' %>">
+                    <a class="page-link" href="/blog?page=1" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <% for(let i=1; i <= numPage; i++){ %>
+                    <li class="page-item <%= page == i ? 'active' : '' %>">
+                        <a class="page-link" href="/blog?page=<%= i %>"><%= i %></a>
+                    </li>
+                <% } %>
+                <li class="page-item <%= page == numPage ? 'disabled' : '' %>">
+                    <a class="page-link" href="/blog?page=<%= numPage %>" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>   
+
+     <%- include('../includes/vn/client-footer.ejs') %>
+<%- include('../includes/html-footer.ejs') %>

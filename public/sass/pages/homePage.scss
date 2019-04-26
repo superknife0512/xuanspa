@@ -327,10 +327,16 @@
         &--area{
             @extend %inputExt;
         }
+        @include viewport(600px){
+            height: 3rem;
+        }
     }
     &__option{
         @extend %inputExt;
         height: 5rem;
+        @include viewport(600px){
+            height: 3rem;
+        }
     }
 }
 

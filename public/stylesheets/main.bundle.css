@@ -7367,8 +7367,14 @@ body {
         margin-top: 1.7rem; } }
   .book__input {
     height: 5rem; }
+    @media only screen and (max-width: 600px) {
+      .book__input {
+        height: 3rem; } }
   .book__option {
     height: 5rem; }
+    @media only screen and (max-width: 600px) {
+      .book__option {
+        height: 3rem; } }
 
 @media only screen and (max-width: 435px) {
   select[id=service] {
@@ -7381,7 +7387,9 @@ body {
 .about {
   margin-top: 3rem; }
   .about__content img {
-    width: 100%; }
+    max-width: 100%; }
+  .about__content p {
+    margin-bottom: 0; }
   @media only screen and (max-width: 600px) {
     .about__hr {
       display: none; } }
@@ -7722,6 +7730,265 @@ body {
       text-transform: capitalize;
       width: 70%;
       text-align: center; }
+
+.blog__show, .blogDetail__other {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 21rem));
+  grid-column-gap: 3rem;
+  grid-row-gap: 5rem;
+  justify-content: center; }
+
+.blog {
+  margin-top: 3rem;
+  margin-bottom: 7rem; }
+  .blog__abstract {
+    text-align: center;
+    margin-bottom: 3.2rem; }
+    .blog__abstract strong {
+      text-align: center;
+      font-weight: 700; }
+  .blog__show {
+    margin-bottom: 2rem; }
+  .blog__card {
+    background-color: white;
+    box-shadow: 3px 3px 9px 0px rgba(0, 0, 0, 0.2); }
+  .blog__card-info {
+    padding: 1.2rem; }
+  .blog__img {
+    width: 100%;
+    height: 12rem;
+    object-fit: cover;
+    margin-bottom: 1.2rem; }
+  .blog__date {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem; }
+    .blog__date svg {
+      fill: #d3d3d3;
+      height: 1.3rem;
+      width: 1.3rem;
+      margin-right: .5rem; }
+    .blog__date p {
+      color: #afafaf;
+      margin-bottom: 0; }
+  .blog__title {
+    font-family: "Dancing Script", cursive;
+    color: #10b359;
+    font-size: 1.7rem;
+    margin-bottom: 1rem; }
+  .blog__action {
+    display: flex;
+    align-items: center; }
+    .blog__action a {
+      margin-right: .5rem;
+      transition: all .2s;
+      margin-bottom: 0; }
+      .blog__action a:link, .blog__action a:visited {
+        font-weight: 700;
+        color: #c02859;
+        text-decoration: none; }
+      .blog__action a:hover {
+        margin-right: 1rem; }
+    .blog__action svg {
+      fill: #c02859;
+      height: 1rem;
+      width: 1rem; }
+  .blog .active .page-link {
+    background-color: #c02859;
+    border-color: #c02859; }
+
+.blogDetail {
+  margin-top: 4rem;
+  margin-bottom: 6rem; }
+  .blogDetail__title {
+    font-size: 2.7rem;
+    color: #10b359;
+    margin-bottom: 2rem;
+    font-family: "Dancing Script", cursive; }
+  .blogDetail__abstract {
+    color: #444;
+    margin-bottom: 2rem;
+    font-size: 1rem; }
+  .blogDetail__info {
+    display: flex;
+    margin-bottom: 2rem; }
+  .blogDetail__content {
+    margin-bottom: 2rem; }
+    .blogDetail__content img {
+      max-width: 100%; }
+  .blogDetail__other {
+    justify-content: start; }
+
+.promotion {
+  margin-top: 3rem;
+  margin-bottom: 6rem; }
+  .promotion__show {
+    margin-top: 3rem; }
+  .promotion__card {
+    display: flex;
+    position: relative;
+    margin-bottom: 3rem;
+    box-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.2); }
+    .promotion__card img {
+      width: 21rem;
+      height: 16rem;
+      object-fit: cover;
+      flex: 1.9; }
+  .promotion__card-info {
+    background-color: #f8f8f8;
+    padding: 1.2rem;
+    flex: 4; }
+    .promotion__card-info h4 {
+      font-size: 1.9rem;
+      font-family: "Dancing Script", cursive;
+      color: #c02859;
+      margin-bottom: 1.5rem; }
+    .promotion__card-info p {
+      padding-bottom: 1rem;
+      border-bottom: 3px dashed #686868; }
+    .promotion__card-info h5 {
+      font-weight: 700;
+      color: #10b359;
+      font-size: 1.1rem; }
+  .promotion__discount {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #c02859;
+    color: white;
+    padding: 1rem;
+    font-weight: 700;
+    clip-path: polygon(0 0, 0% 100%, 100% 0);
+    height: 5rem;
+    width: 5rem;
+    padding-top: .5rem;
+    padding-left: .5rem;
+    font-size: 1.1rem;
+    box-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.2); }
+    .promotion__discount span {
+      transform: rotate(30deg); }
+
+.contact__title, .contact__info-title {
+  font-size: 2.3rem;
+  font-family: "Dancing Script", cursive; }
+
+.contact__body::before, .contact__body::after {
+  content: "";
+  height: 10rem;
+  width: 10rem;
+  opacity: .5; }
+  @media only screen and (max-width: 1081px) {
+    .contact__body::before, .contact__body::after {
+      display: none; } }
+
+.contact__flw1, .contact__flw2 {
+  height: 11rem;
+  width: 11rem;
+  position: absolute;
+  z-index: 700; }
+  @media only screen and (max-width: 1081px) {
+    .contact__flw1, .contact__flw2 {
+      display: none; } }
+
+.contact {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  position: relative; }
+  .contact__body {
+    grid-column: 2/12;
+    position: relative;
+    padding: 0 2rem; }
+    @media only screen and (max-width: 880px) {
+      .contact__body {
+        grid-column: 1/13; } }
+    @media only screen and (max-width: 600px) {
+      .contact__body {
+        padding: 0 1rem; } }
+    .contact__body::before {
+      border-left: solid 1px #c02859;
+      border-bottom: solid 1px #c02859;
+      position: absolute;
+      bottom: 0;
+      left: 2rem;
+      transform: translateY(-6rem); }
+    .contact__body::after {
+      border-top: solid 1px #c02859;
+      border-right: solid 1px #c02859;
+      position: absolute;
+      top: 0;
+      right: 2rem; }
+  .contact__flw1 {
+    bottom: -17px;
+    left: -15px;
+    transform: translateY(-6rem); }
+  .contact__flw2 {
+    top: -21px;
+    right: 18px; }
+  .contact__form {
+    grid-column: 1/8;
+    background-color: whitesmoke;
+    box-shadow: 3px 3px 20px 0px rgba(0, 0, 0, 0.3);
+    padding: 3rem 2.5rem;
+    border-radius: 5px; }
+    @media only screen and (max-width: 880px) {
+      .contact__form {
+        grid-column: 2/12; } }
+    @media only screen and (max-width: 519px) {
+      .contact__form {
+        grid-column: 1/13;
+        padding: 2rem 1.2rem; } }
+  .contact__title {
+    color: #10b359; }
+  .contact .book__form {
+    padding: 0; }
+    .contact .book__form input:focus {
+      border: 1px solid #c02859; }
+    .contact .book__form textarea:focus {
+      border: 1px solid #c02859; }
+  .contact__info {
+    grid-column: 6/13;
+    background-image: linear-gradient(90deg, rgba(16, 179, 89, 0.75) 0%, rgba(16, 179, 89, 0.75) 100%), url("/images/pattern.jpg");
+    background-size: cover;
+    padding: 3rem 2.5rem;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
+    transform: translateY(-6rem);
+    position: relative; }
+    @media only screen and (max-width: 880px) {
+      .contact__info {
+        grid-column: 2/12;
+        transform: translateY(-1rem); } }
+    @media only screen and (max-width: 600px) {
+      .contact__info {
+        grid-column: 1/13;
+        padding: 2rem 1.2rem; } }
+  .contact__info-title {
+    margin-bottom: 2rem; }
+  .contact__about {
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
+  .contact__more svg {
+    fill: white; }
+  .contact__fb {
+    position: absolute;
+    top: 2rem;
+    right: 2rem; }
+    .contact__fb svg {
+      fill: white;
+      height: 3rem;
+      width: 3rem; }
+  @media only screen and (max-width: 600px) {
+    .contact input[name=phone] {
+      margin-bottom: 1rem; } }
+
+#map {
+  height: 30rem;
+  z-index: -1; }
+  @media only screen and (max-width: 1081px) {
+    #map {
+      height: 25rem; } }
 
 .filter {
   margin-top: 2rem;

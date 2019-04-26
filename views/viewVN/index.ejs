@@ -105,15 +105,18 @@
                 </select>
             </div>
             <input type="text" class="book__input"
-                        placeholder="Số điện thoại">
+                        placeholder="Số điện thoại" name="phone">
             <input type="email" class="book__input"
-                        placeholder="Email">
+                        placeholder="Email" name="email">
             <textarea type="text" class="book__input--area pt-2"
                         placeholder="Lời nhắn"
-                        rows="8"></textarea>
+                        rows="8"
+                        name="mess"></textarea>
 
             <button class="btn-book mt-2">Đặt ngay</button>
         </form>
     </section>
 
+
+    <%- include('../includes/vn/client-footer.ejs') %>
 <%- include('../includes/html-footer.ejs') %>

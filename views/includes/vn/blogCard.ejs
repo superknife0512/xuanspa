@@ -1,0 +1,25 @@
+<div class="blog__card">
+    <img src="<%= blog.imgUrl %>" alt="anh"
+        class="blog__img">
+    <div class="blog__card-info">
+
+        <div class="blog__date">
+            <svg>
+                <use xlink:href="images/symbol.svg#icon-clock"></use>
+            </svg>
+            <p class="blog__date-info"><%= blog.createdAt %></p>
+        </div>
+        <h4 class="blog__title">
+            <%= blog.title %>
+        </h4>
+        <p class="blog__text desc">
+            <%= blog.shortDesc %>
+        </p>
+        <div class="blog__action">
+            <a href="/blog/<%= blog._id %>">Xem ngay</a>
+            <svg>
+                <use xlink:href="images/symbol.svg#icon-arrow-right"></use>
+            </svg>
+        </div>
+    </div>
+</div>

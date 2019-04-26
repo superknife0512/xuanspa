@@ -1,0 +1,92 @@
+<%- include('../includes/html-header.ejs') %>
+    <%- include('../includes/vn/client-header.ejs') %>
+
+        <div class="contact grid">
+            <div class="contact__body grid">
+
+                <div class="contact__form">
+                    <h4 class="contact__title">
+                        Lời nhắn 
+                    </h4>
+                    <h6>Bạn muốn nhắn gì đến chúng tôi?</h6>
+                    <form action="/message" class="book__form container" method="POST">
+                        <div class="book__inline">
+                            <input type="text" class="book__input mr-2"
+                                    placeholder="Tên của bạn" name="name">
+                            <input type="text" class="book__input"
+                                        placeholder="Số điện thoại" name="phone">
+                        </div>
+                        <input type="email" class="book__input"
+                                    placeholder="Email" name="email">
+                        <textarea type="text" class="book__input--area pt-2"
+                                    placeholder="Lời nhắn"
+                                    rows="8"
+                                    name="mess"></textarea>
+            
+                        <button class="btn-book mt-2">Gửi tin nhắn</button>
+                    </form>
+                </div>
+                <div class="contact__info">
+                    <h4 class="contact__info-title">
+                        Về chúng tôi
+                    </h4>
+                    <p class="contact__about">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus fugit culpa quam tempore itaque! Dolorum est dolores dolor, assumenda ad, repudiandae voluptas iste quae nulla totam distinctio, repellendus officiis expedita. <br>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum mollitia explicabo veritatis expedita culpa amet accusamus cum harum dolor et cupiditate excepturi, voluptatum itaque exercitationem laboriosam ipsa blanditiis rerum labore?
+                    </p>
+                    <div class="contact__more">
+                        <div class="footer__info-block">
+                            <svg class="footer__icon">
+                                <use xlink:href="images/symbol.svg#icon-home"></use>
+                            </svg>
+                            <h5 class="footer__icon-info">
+                                32 Nguyễn Trường Tộ, Quận Hải Châu, thành phố Đà Nẵng
+                            </h5>
+                        </div>
+                        <div class="footer__info-block">
+                            <svg class="footer__icon">
+                                <use xlink:href="images/symbol.svg#icon-phone"></use>
+                            </svg>
+                            <h5 class="footer__icon-info">
+                                0919 317 689 (Ms. Châu)
+                            </h5>
+                        </div>
+                        <div class="footer__info-block">
+                            <svg class="footer__icon">
+                                <use xlink:href="images/symbol.svg#icon-phone"></use>
+                            </svg>
+                            <h5 class="footer__icon-info">
+                                0906 881 999 (Ms. Duyên)
+                            </h5>
+                        </div>
+                    </div>
+    
+                    <a href="#" class="contact__fb">
+                        <svg>
+                            <use xlink:href="images/symbol.svg#icon-facebook-with-circle"></use>
+                        </svg>
+                    </a>
+                </div>
+                <img src="images/flower1.png" alt="anh" class="contact__flw1">
+                <img src="images/flower2.png" alt="anh" class="contact__flw2">
+
+            </div>
+        </div>
+        
+        <div id="map"></div>   
+
+        <script>
+            function initMap() {
+                const CS1 = {lat: 16.058420, lng: 108.218100};
+                // The map, centered at AK
+                const map = new google.maps.Map(
+                    document.getElementById('map'), {zoom: 15, center: CS1});
+                // The marker, positioned at Uluru
+                const marker = new google.maps.Marker({position: CS1, map: map});
+            }
+
+            initMap();
+        </script>
+
+     <%- include('../includes/vn/client-footer.ejs') %>
+<%- include('../includes/html-footer.ejs') %>

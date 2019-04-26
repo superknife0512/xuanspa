@@ -1,0 +1,62 @@
+.promotion{
+    margin-top: 3rem;
+    margin-bottom: 6rem;
+
+    &__show{
+        margin-top: 3rem;
+    }
+    &__card{
+        display: flex;
+        position: relative;
+        margin-bottom: 3rem;
+        
+        @include boxshadow(4px, .2);
+
+        img{
+            width: 21rem;
+            height: 16rem;
+            object-fit: cover;
+            flex: 1.9;
+        }
+    }
+    &__card-info{
+        background-color: #f8f8f8;
+        padding: 1.2rem;
+        flex: 4;
+        h4{
+            font-size: 1.9rem;
+            font-family: $font-title;
+            color: $color-secondary;
+            margin-bottom: 1.5rem;
+        }
+        p{
+            padding-bottom: 1rem;
+            border-bottom: 3px dashed rgb(104, 104, 104);
+        }
+        h5{
+            font-weight: 700;
+            color: $color-primary;
+            font-size: 1.1rem;
+        }
+    }
+
+    &__discount{
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: $color-secondary;
+        color: white;
+        padding: 1rem;
+        font-weight: 700;
+        clip-path: polygon(0 0, 0% 100%, 100% 0);
+        height: 5rem;
+        width: 5rem;
+        padding-top: .5rem;
+        padding-left: .5rem;
+        font-size: 1.1rem;
+        @include boxshadow(4px, .2);
+        span{
+            transform: rotate(30deg)
+        }
+    }
+}

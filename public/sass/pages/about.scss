@@ -6,7 +6,10 @@
         //     font-family: $font-title;
         // }
         img{
-            width: 100%;
+            max-width: 100%;
+        }
+        p{
+            margin-bottom: 0;
         }
     }
     &__hr{
