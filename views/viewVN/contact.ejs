@@ -6,7 +6,7 @@
 
                 <div class="contact__form">
                     <h4 class="contact__title">
-                        Lời nhắn 
+                        Đặt chỗ!
                     </h4>
                     <h6>Bạn muốn nhắn gì đến chúng tôi?</h6>
                     <form action="/message" class="book__form container" method="POST">
@@ -18,6 +18,14 @@
                         </div>
                         <input type="email" class="book__input"
                                     placeholder="Email" name="email">
+
+                        <select name="service" id="service" class="book__option pr-4" >
+                            <option value="none">Dịch vụ yêu cầu</option>
+                            <% services.forEach(serv=>{ %>
+                                <option value="<%= serv._id %>"><%= serv.name %></option>
+                            <% }) %>
+                        </select>
+                        
                         <textarea type="text" class="book__input--area pt-2"
                                     placeholder="Lời nhắn"
                                     rows="8"
@@ -40,6 +48,16 @@
                                 <use xlink:href="images/symbol.svg#icon-home"></use>
                             </svg>
                             <h5 class="footer__icon-info">
+                                Xuân Spa Boutique (8h30 - 22h30) <br>
+                                32 Nguyễn Trường Tộ, Quận Hải Châu, thành phố Đà Nẵng
+                            </h5>
+                        </div>
+                         <div class="footer__info-block">
+                            <svg class="footer__icon">
+                                <use xlink:href="images/symbol.svg#icon-home"></use>
+                            </svg>
+                            <h5 class="footer__icon-info">
+                                Xuân Spa (8h30 - 22h00) <br>
                                 32 Nguyễn Trường Tộ, Quận Hải Châu, thành phố Đà Nẵng
                             </h5>
                         </div>
@@ -77,12 +95,14 @@
 
         <script>
             function initMap() {
-                const CS1 = {lat: 16.058420, lng: 108.218100};
+                const CS1 = {lat: 16.058371, lng: 108.217709};
+                const CS2 = {lat: 16.051002, lng: 108.244441};
                 // The map, centered at AK
                 const map = new google.maps.Map(
-                    document.getElementById('map'), {zoom: 15, center: CS1});
+                    document.getElementById('map'), {zoom: 14, center: CS2});
                 // The marker, positioned at Uluru
-                const marker = new google.maps.Marker({position: CS1, map: map});
+                const marker = new google.maps.Marker({position: CS1, map: map, title:'Cơ sở 1'});
+                const marker2 = new google.maps.Marker({position: CS2, map: map, title: 'Cơ sở 2'});
             }
 
             initMap();

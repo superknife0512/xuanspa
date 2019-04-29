@@ -57,7 +57,7 @@
         
         @include viewport(660px){
             margin-top: 0;
-            flex: 2;
+            flex: 1.5;
             position: sticky;
             top: 1rem;
          }
@@ -208,6 +208,10 @@
     padding: 4rem 3rem;
     background-color: rgb(240, 240, 240);
     border-radius: 5px;
+
+    @include viewport(600px){
+        margin: 5rem 0;
+    }
 
     &__title{
         text-align: center;

@@ -22,3 +22,7 @@ input[type="file"]{
 .activePopup{
     display: flex !important;
 }
+
+.deactivePopup{
+    display: none !important;
+}

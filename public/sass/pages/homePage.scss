@@ -32,7 +32,7 @@
 
         h5{
             font-family: $font-title;
-            color: white;
+            color: rgb(255, 0, 0);
             font-size: 2rem;
             text-transform: capitalize;
         }
@@ -146,11 +146,11 @@
         @include boxshadow(15px, .28);
         flex: 4;    
         @include viewport(1375px){
-            height: 20rem;
-            width: 100%
+            height: 22rem;
         }
         @include viewport(473px){
             height: 14rem;
+            flex: none;
         }
 
         &--img{
@@ -160,7 +160,7 @@
             animation: snapIn .5s;
             display: none;
             @include viewport(1379px){
-                height: 20rem;
+                height: 22rem;
             }
             @include viewport(473px){
                 height: 14rem;
@@ -202,8 +202,8 @@
                 }
             }
             @include viewport(1379px){
-                height: .4rem;
-                width: .4rem;
+                height: .6rem;
+                width: .6rem;
             }
         }
     }
@@ -305,6 +305,9 @@
         font-family: $font-title;
         color: $color-secondary;
         text-transform: capitalize;
+        @include viewport(1375px){
+            font-size: 4.3rem;
+        }
         @include viewport(1173px){
             font-size: 3.5rem;
         }

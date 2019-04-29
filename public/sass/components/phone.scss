@@ -1,0 +1,54 @@
+
+.phone{
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    background-color: $color-primary;
+    height: 5rem;
+    width: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    z-index: 1000;
+    @include viewport(600px){
+        bottom: .5rem;
+        left: .5rem;
+        height: 4rem;
+        width: 4rem;
+    }
+    &::after{
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color: $color-primary;
+        position: absolute;
+        border-radius: 50%;
+
+        top: 0;
+        left: 0;
+        animation: floatOut 1s ease infinite;
+        z-index: -1;
+    }
+
+    svg{
+        fill: white;
+        height: 2.2rem;
+        width: 2.2rem;
+        @include viewport(600px){
+            height: 1.9rem;
+            width: 1.9rem;
+        }
+    }
+}
+
+@keyframes floatOut{
+    0%{
+        opacity: 1;
+        transform: scale(1);
+    }
+    100%{
+        opacity: 0;
+        transform: scale(1.4);
+    }
+}

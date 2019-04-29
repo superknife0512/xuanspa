@@ -51,5 +51,11 @@ if(allDot[0] && allImgs[0]){
     } else if (langActive === 'ko'){
         $('img[alt=flag-ko]').addClass('active-flag');
     }
+
     
 }
+    
+$('.promo-pop__canc').click(function(){
+    console.log('cax');
+    $('.promo-pop').addClass('deactivePopup')
+})

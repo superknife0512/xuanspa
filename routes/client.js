@@ -29,6 +29,9 @@ router.get('/blog/:blogId', clientCtrl.getBlogDetail);
 // contact
 router.get('/contact', clientCtrl.getContact);
 
+// recruit
+router.get('/recruit', clientCtrl.getRecruit);
+
 
 
 

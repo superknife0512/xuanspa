@@ -64,8 +64,6 @@ exports.getHomePage = async (req,res,next)=>{
         let adminDataVN = await getAdminDataVN();
         const lang = req.session.lang || 'vn';
         let langAdminData;
-
-        const services = await getServices(lang)
         if(lang !== 'vn'){
             langAdminData = await getAdminData(lang)
         }
@@ -85,7 +83,7 @@ exports.getHomePage = async (req,res,next)=>{
             title: 'Home Page',
             adminData,
             lang,
-            services,
+            services: [],
         })
     } catch (err) {
         next(err)
@@ -285,7 +283,7 @@ exports.getProduct = async (req,res,next)=>{
 
         res.render(`${dir}/product`,{
             activeTab: 'product',
-            headerTitle: 'Sản phẩm sử dụng',
+            headerTitle: 'Sản phẩm',
             title: 'Sản phẩm',
             products
         })
@@ -382,15 +380,36 @@ exports.getContact = async (req,res,next)=>{
         const lang = req.session.lang || 'vn';
         const dir = langDir(lang);
 
-        const headerTitle = titleTrans(lang, 'Liên hệ', 'Contact us', '문의하기');
+        const services = await getServices(lang);
+
+        const headerTitle = titleTrans(lang, 'Đặt chỗ', `Let's book`, '문의하기');
         
         res.render(`${dir}/contact`,{
             activeTab: 'contact',
             headerTitle: headerTitle,
             title: headerTitle,
+            services
         })
         
     } catch (err) {
         next(err)
+    }
+}
+
+// recruitment
+exports.getRecruit = async (req,res,next)=>{
+    try{
+        const lang = req.session.lang || 'vn';
+        const adminData =await getAdminData(lang);
+        const dir = langDir(lang);
+        const headerTitle = titleTrans(lang, 'Tuyển dụng', 'Recruitment', '모집');
+        res.render(`${dir}/recruit`,{
+            title: headerTitle,
+            headerTitle: headerTitle,
+            activeTab: 'recruit',
+            adminData,
+        })
+    } catch(err){
+        next(err);
     }
 }
