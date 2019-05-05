@@ -1,0 +1,61 @@
+<%- include('../includes/html-header.ejs') %>
+<!-- navbar section -->
+<%- include('../includes/admin-header.ejs') %>
+
+<div class="mess container">
+    <h2>Messages</h2>
+
+    <% messages.forEach((mess, i)=>{ %>
+        <div class="mess__card">
+            <div class="mess__short">
+                <div class="mess__info">
+                    <h6>Name</h6>
+                    <p><%= mess.name %></p>
+                </div>
+                <div class="mess__info">
+                    <h6>Phone</h6>
+                    <p><%= mess.phone %></p>
+                </div>
+                <div class="mess__info">
+                    <h6>Email</h6>
+                    <p><%= mess.email %></p>
+                </div>
+                <div class="mess__info">
+                    <h6>Receive date </h6>
+                    <p ><%= date[i] %></p>
+                </div>
+                <div class="mess__info">
+                    <button class="btn btn-danger del-btn">Delete</button>
+                </div>
+                <input type="hidden" name="messId" value="<%= mess._id %>">
+            </div>
+            <div class="mess__detail">
+                <h5>Service: <%= mess.service.name %></h5>
+                <hr>
+                <p><%= mess.message %></p>
+            </div>
+        </div>
+    <% }) %>
+
+    <div class="popup__wrapper">
+        <div class="popup">
+            <h4 class="popup__title">Are you sure ?</h4>
+            
+            <p class="popup__desc">
+                This action cannot be restored and this object will be deleted forever
+            </p>
+            
+            <form class="popup__action d-flex" 
+                    action="/admin/delete-message" 
+                    method="POST">
+                <input type="hidden" value="" name="messId" class="curId">
+                <a href="#" class="btn btn-outline-secondary mr-4 canc-btn">Cancel</a>
+                <button type="submit" class="btn btn-outline-primary">
+                    Yes, Delete
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('../includes/html-footer.ejs') %>

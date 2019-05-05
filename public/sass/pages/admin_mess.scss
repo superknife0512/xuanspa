@@ -1,0 +1,48 @@
+.mess{
+    margin: 5rem auto;
+    h2{
+        margin-bottom: 3rem;
+    }
+    &__card{
+        @include boxshadow(5px, .19);
+        margin-bottom: 1.5rem;
+    }
+    &__short{
+        display: flex;
+        padding: 1.2rem;
+        justify-content: space-around;
+        cursor: pointer;
+        border-top: 5px solid #1fe492;
+
+        @include viewport(600px){
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    &__info{
+        display: flex;
+        flex-direction: column;
+
+        @include viewport(600px){
+            margin-bottom: 1rem;
+            align-items: center
+        }
+
+        h6{
+            font-weight: 700;
+        }
+        p{
+            margin-bottom: 0;
+        }
+    }
+
+    &__detail{
+        background-color: rgb(245, 245, 245);
+        padding: 2rem 4rem;
+        display: none;
+
+        h5{
+            font-weight: 700;
+        }
+    }
+}

@@ -89,5 +89,9 @@ router.post('/create-product',uploadProduct, adminCtrl.postCreateProduct);
 router.post('/edit-product',uploadProduct, adminCtrl.postEditProduct);
 router.post('/delete-product', adminCtrl.deleteProduct);
 
+router.get('/message',authProtect, adminCtrl.getMessage);
+router.post('/delete-message',authProtect, adminCtrl.deleteMessage);
+
+
 
 module.exports = router;

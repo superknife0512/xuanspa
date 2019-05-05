@@ -10,6 +10,7 @@ import'./function/service'
 import'./function/priceFilter'
 import'./function/serviceImg'
 import'./function/bookFunction'
+import'./function/message'
 
 import { shortenText, dateFilter } from './function/descFilter.js'
 

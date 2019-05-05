@@ -3,6 +3,8 @@ const Blog = require('../models/Blog');
 const Promotion = require('../models/Promotion');
 const Product = require('../models/Product');
 const AdminData = require('../models/AdminData');
+const Message = require('../models/Message');
+
 const deleteFile = require('../utils/deleteImg');
 // ADMIN SECTION ****************************************************
 exports.getAdminPannel = async (req,res,next)=>{
@@ -751,6 +753,41 @@ exports.deleteProduct = async (req,res,next)=>{
 
         res.redirect('/admin/product')
 
+    } catch (err) {
+        next(err)
+    }
+}
+
+
+// Message section
+
+exports.getMessage = async (req,res,next)=>{
+    try {
+        const messages = await Message.find().sort('-createdAt').populate('service');
+        const date = messages.map(mess=>{
+            return mess.createdAt.toISOString().split('T')[0].split('-').reverse().join('-')
+        })
+        res.render('admin/message', {
+            title: 'Client message',
+            activeTab: 'message',
+            err: null,
+            messages,
+            date
+        })
+
+        
+    } catch (err) {
+        next(err)
+    }
+}
+
+exports.deleteMessage = async (req,res,next)=>{
+    try {
+        const messId = req.body.messId ; 
+        await Message.findOneAndRemove(messId);
+
+        res.redirect('/admin/message');
+        
     } catch (err) {
         next(err)
     }
