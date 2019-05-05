@@ -1,5 +1,20 @@
 <%- include('../includes/html-header.ejs') %>
     <%- include('../includes/vn/client-header.ejs') %>
+    <script>
+        function initMap() {
+            const CS1 = {lat: 16.058371, lng: 108.217709};
+            const CS2 = {lat: 16.051002, lng: 108.244441};
+            // The map, centered at AK
+            const map = new google.maps.Map(
+                document.getElementById('map'), {zoom: 14, center: CS2});
+            const marker = new google.maps.Marker({position: CS1, map: map, title:'Xuan Spa Boutique'});
+            const marker2 = new google.maps.Marker({position: CS2, map: map, title: 'Xuan Spa'});
+        }
+
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBujqMBozUkmblM1GY3mZkIoDzyiKqJSpU&callback=initMap">
+    </script>
 
         <div class="contact grid">
             <div class="contact__body grid">
@@ -49,7 +64,8 @@
                             </svg>
                             <h5 class="footer__icon-info">
                                 Xuân Spa Boutique (8h30 - 22h30) <br>
-                                32 Nguyễn Trường Tộ, Quận Hải Châu, thành phố Đà Nẵng
+                                B4-05 An Thượng 38, q. Ngũ Hành Sơn, tp. Đà Nẵng <br>
+                                Tel: 0236 3583 589
                             </h5>
                         </div>
                          <div class="footer__info-block">
@@ -57,24 +73,9 @@
                                 <use xlink:href="images/symbol.svg#icon-home"></use>
                             </svg>
                             <h5 class="footer__icon-info">
-                                Xuân Spa (8h30 - 22h00) <br>
-                                32 Nguyễn Trường Tộ, Quận Hải Châu, thành phố Đà Nẵng
-                            </h5>
-                        </div>
-                        <div class="footer__info-block">
-                            <svg class="footer__icon">
-                                <use xlink:href="images/symbol.svg#icon-phone"></use>
-                            </svg>
-                            <h5 class="footer__icon-info">
-                                0919 317 689 (Ms. Châu)
-                            </h5>
-                        </div>
-                        <div class="footer__info-block">
-                            <svg class="footer__icon">
-                                <use xlink:href="images/symbol.svg#icon-phone"></use>
-                            </svg>
-                            <h5 class="footer__icon-info">
-                                0906 881 999 (Ms. Duyên)
+                                Xuân Spa (8h30 - 22h30) <br>
+                                32 Nguyễn Trường Tộ, q. Hải Châu, tp. Đà Nẵng <br>
+                                Tel: 0236 3838 589
                             </h5>
                         </div>
                     </div>
@@ -92,21 +93,6 @@
         </div>
         
         <div id="map"></div>   
-
-        <script>
-            function initMap() {
-                const CS1 = {lat: 16.058371, lng: 108.217709};
-                const CS2 = {lat: 16.051002, lng: 108.244441};
-                // The map, centered at AK
-                const map = new google.maps.Map(
-                    document.getElementById('map'), {zoom: 14, center: CS2});
-                // The marker, positioned at Uluru
-                const marker = new google.maps.Marker({position: CS1, map: map, title:'Cơ sở 1'});
-                const marker2 = new google.maps.Marker({position: CS2, map: map, title: 'Cơ sở 2'});
-            }
-
-            initMap();
-        </script>
-
+        
      <%- include('../includes/vn/client-footer.ejs') %>
 <%- include('../includes/html-footer.ejs') %>

@@ -3,8 +3,7 @@
 .hero{
     // control navigation bar
     height: 100vh;
-    
-    background-image: linear-gradient(90deg, rgba(44, 60, 42, .66) 0%,  rgba(25, 78, 60, 0.76) 100% ), url("/images/hero-img.jpg");
+    // background-image: linear-gradient(90deg, rgba(44, 60, 42, .66) 0%,  rgba(25, 78, 60, 0.76) 100% ), url("/images/hero-img.jpg");
     background-size: cover;
     background-position: center;
     padding: 2rem 7rem;
@@ -204,6 +203,10 @@
             @include viewport(1379px){
                 height: .6rem;
                 width: .6rem;
+            }
+            @include viewport(600px){
+                height: .5rem;
+                width: .5rem;
             }
         }
     }

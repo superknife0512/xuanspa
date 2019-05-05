@@ -78,12 +78,15 @@ exports.getHomePage = async (req,res,next)=>{
             heroImgUrl: adminDataVN.heroImgUrl,
             gallerieUrls: adminDataVN.gallerieUrls
         }
+
+        const bgUrl =`background-image: linear-gradient(90deg, rgba(44, 60, 42, .66) 0%,  rgba(25, 78, 60, 0.76) 100% ), url("${adminData.heroImgUrl}");` ;
         
         res.render(`${dir}/index`,{
             title: 'Home Page',
             adminData,
             lang,
             services: [],
+            bgUrl
         })
     } catch (err) {
         next(err)

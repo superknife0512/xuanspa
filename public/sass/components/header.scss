@@ -13,7 +13,7 @@ $color-header: #1b804d;
 
     @include viewport(661px){
         padding: 1.5rem 3rem;
-        min-height: 21rem;
+        min-height: 16rem;
     }
 
     @include viewport(500px){
@@ -40,11 +40,17 @@ $color-header: #1b804d;
             font-size: 2rem;
             color: rgb(255, 0, 0);
             text-transform: capitalize;
+            @include viewport(600px){
+                font-size: 1.5rem;
+            }
         }
     }
     &__logo{
         height: 5rem;
         margin-right: 1rem;
+        @include viewport(600px){
+            height: 4rem;
+        }
     }
     &__nav{
         display: flex;

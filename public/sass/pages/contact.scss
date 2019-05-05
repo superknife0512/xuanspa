@@ -160,9 +160,13 @@
 
 #map{
     height: 30rem;
-    z-index: -1;
+    width: 100%;
 
     @include viewport(1081px){
         height: 25rem;
     }
+    .gm-style * {
+        width:auto;
+        height:auto;
+      }
 }

@@ -38,7 +38,7 @@
     }
     &__info{
         &:not(:last-child){
-            margin-right: 1rem;
+            margin-right: 1.7rem;
             @include viewport(1000px){
                 margin-right: 0;
                 margin-bottom: 1.3rem;
@@ -60,11 +60,24 @@
         flex: 5;
         font-size: 1.1rem;
         margin-bottom: 0;
+        b{
+            text-transform: uppercase;
+            color: $color-secondary;
+            margin-bottom: 0.4rem;
+        }
         a{
             &:link, &:visited{
                 color: #343434;
             }
         }
+
+        @include viewport(600px){
+            font-size: 0.9rem;
+        }
+    }
+    &__info-img{
+        height: 2rem;
+        margin-right: .7rem;
     }
     &__payment{
         height: 5rem;

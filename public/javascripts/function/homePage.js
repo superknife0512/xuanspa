@@ -52,10 +52,15 @@ if(allDot[0] && allImgs[0]){
         $('img[alt=flag-ko]').addClass('active-flag');
     }
 
+    setTimeout(() => {
+        $('.promo-pop').addClass('activePopup')
+    }, 3000);
     
 }
+
     
 $('.promo-pop__canc').click(function(){
     console.log('cax');
+    $('.promo-pop').remove('activePopup')
     $('.promo-pop').addClass('deactivePopup')
 })
