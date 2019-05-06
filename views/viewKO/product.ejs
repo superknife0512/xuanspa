@@ -1,0 +1,40 @@
+<%- include('../includes/html-header.ejs') %>
+    <%- include('../includes/en/client-header.ejs') %>
+
+        <div class="product container">
+            <div class="product__show">
+                <% products.forEach(prod=>{ %>
+                    <div class="product__card">
+                        <img src="<%= prod.imgUrl %>" alt="anh">
+                        <h6><%= prod.name %></h6>
+                        <input type="hidden" name="name" value="<%= prod.name %>">
+                        <input type="hidden" name="desc" value="<%= prod.desc %>">
+                        <input type="hidden" name="brand" value="<%= prod.brand %>">
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+
+        <div class="prod-pop">
+            <div class="prod-pop__body">
+                <h4 class="prod-pop__title">
+                    제품 정보
+                </h4>
+                <h5 class="prod-pop__name">
+                    sản phẩm dưỡng da toàn thân
+                </h5>
+                <div class="prod-pop__brand">
+                    <svg>
+                        <use xlink:href="images/symbol.svg#icon-shield"></use>
+                    </svg>
+                    <strong id="brand"> Thương hiệu từ Thụy Sĩ </strong>
+                </div>
+                <p class="prod-pop__content">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu rhoncus purus, non porta eros. Nullam varius massa eu enim interdum, ut posuere metus ullamcorper. Fusce molestie nisl volutpat scelerisque ornare. Praesent commodo aliquet nisl a suscipit. Fusce id viverra sem, et euismod libero. Vestibulum pellentesque vehicula sodales. Nunc ullamcorper convallis laoreet. Curabitur sapien nisl, gravida eget arcu quis, auctor tincidunt erat. 
+                </p>
+                <span class="book-pop__close">x</span>
+            </div>
+        </div>
+
+     <%- include('../includes/en/client-footer.ejs') %>
+<%- include('../includes/html-footer.ejs') %>

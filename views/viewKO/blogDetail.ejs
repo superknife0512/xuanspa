@@ -1,0 +1,48 @@
+<%- include('../includes/html-header.ejs') %>
+    <%- include('../includes/ko/client-header.ejs') %>
+
+    <div class="blogDetail container">
+        <h3 class="blogDetail__title">
+            <%= blog.title %>
+        </h3>
+        <i class="blogDetail__abstract">
+            <%= blog.shortDesc %>
+        </i>
+        <p></p>
+        <div class="blogDetail__info">
+            <div class="servDetail__info">
+                <svg>
+                    <use xlink:href="images/symbol.svg#icon-eye"></use>
+                </svg>
+                <p> <%= blog.views %> 전망 </p>
+            </div>
+
+            <div class="servDetail__info">
+                <svg>
+                    <use xlink:href="images/symbol.svg#icon-clock"></use>
+                </svg>
+                <p class="blog__date-info"> <%= blog.createdAt %> </p>
+            </div>
+        </div>
+
+        <div class="blogDetail__content">
+            <input type="hidden" name="html" value="<%= blog.html %>">
+            <div id="content"></div>
+        </div>
+        <hr>
+        <h4 class="blogDetail__title">
+            기타 기사
+        </h4>
+        <div class="blogDetail__other">
+            <% others.forEach(blog=>{ %>
+
+                <%- include('../includes/ko/blogCard',{
+                    blog: blog
+                }) %>
+
+            <% }) %>
+        </div>
+    </div>   
+
+     <%- include('../includes/ko/client-footer.ejs') %>
+<%- include('../includes/html-footer.ejs') %>

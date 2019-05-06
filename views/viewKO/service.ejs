@@ -1,0 +1,163 @@
+<%- include('../includes/html-header.ejs') %>
+    <%- include('../includes/ko/client-header.ejs') %>
+
+        <div class="container client-service">
+            <div class="client-service__body">
+                <ul class="client-service__tabs">
+                    <li class="client-service__tab" data-tab="face">
+                        얼굴 관리 및 치료
+                    </li>
+                    <li class="client-service__tab" data-tab="massage">
+                        마사지 요법
+                    </li>
+                    <li class="client-service__tab" data-tab="body">
+                        바디 트리트먼트
+                    </li>
+                    <li class="client-service__tab" data-tab="package">
+                        스파 패키지
+                    </li>
+                    <li class="client-service__tab" data-tab="all">
+                        모든 서비스
+                    </li>
+                </ul>
+
+                <div class="client-service__show" data-tag="face">
+
+                    <% serviceFace.forEach(serv=>{ %>
+                        <div class="client-service__card">
+                            <img src="<%= serv.imgUrls[0] %>" alt="anh" 
+                                class="client-service__card-img">
+                            <div class="client-service__card-info">
+                                <span class="client-service__tag"><%= serv.tag %></span>
+                                <h4 class="client-service__name"><%= serv.name %></h4>
+                                <div class="client-service__time">
+                                    <svg class="client-service__icon">
+                                        <use xlink:href="images/symbol.svg#icon-spa"></use>
+                                    </svg>
+                                    <p><span class="Price"><%= serv.price %></span> vnd / <%= serv.time %> 의사록</p>
+                                </div>
+                                <a href="/services/<%= serv.seoName %>.<%= serv._id %>" class="client-service__link">
+                                    <h6>더 알아보기</h6>
+                                    <svg>
+                                        <use xlink:href="images/symbol.svg#icon-arrow-right"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    <% }) %>
+
+                </div>
+
+                <div class="client-service__show" data-tag="massage">
+
+                    <% serviceMassage.forEach(serv=>{ %>
+                        <div class="client-service__card">
+                            <img src="<%= serv.imgUrls[0] %>" alt="anh" 
+                                class="client-service__card-img">
+                            <div class="client-service__card-info">
+                                <span class="client-service__tag"><%= serv.tag %></span>
+                                <h4 class="client-service__name"><%= serv.name %></h4>
+                                <div class="client-service__time">
+                                    <svg class="client-service__icon">
+                                        <use xlink:href="images/symbol.svg#icon-spa"></use>
+                                    </svg>
+                                    <p><span class="Price"><%= serv.price %></span> vnd / <%= serv.time %> 의사록</p>
+                                </div>
+                                <a href="/services/<%= serv.seoName %>.<%= serv._id %>" class="client-service__link">
+                                    <h6>더 알아보기</h6>
+                                    <svg>
+                                        <use xlink:href="images/symbol.svg#icon-arrow-right"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    <% }) %>
+
+                </div>
+
+                <div class="client-service__show" data-tag="body">
+
+                    <% serviceBody.forEach(serv=>{ %>
+                        <div class="client-service__card">
+                            <img src="<%= serv.imgUrls[0] %>" alt="anh" 
+                                class="client-service__card-img">
+                            <div class="client-service__card-info">
+                                <span class="client-service__tag"><%= serv.tag %></span>
+                                <h4 class="client-service__name"><%= serv.name %></h4>
+                                <div class="client-service__time">
+                                    <svg class="client-service__icon">
+                                        <use xlink:href="images/symbol.svg#icon-spa"></use>
+                                    </svg>
+                                    <p><span class="Price"><%= serv.price %></span> vnd / <%= serv.time %> phút</p>
+                                </div>
+                                <a href="/services/<%= serv.seoName %>.<%= serv._id %>" class="client-service__link">
+                                    <h6>더 알아보기</h6>
+                                    <svg>
+                                        <use xlink:href="images/symbol.svg#icon-arrow-right"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    <% }) %>
+
+                </div>
+
+                <div class="client-service__show" data-tag="package">
+
+                    <% servicePackage.forEach(serv=>{ %>
+                        <div class="client-service__card">
+                            <img src="<%= serv.imgUrls[0] %>" alt="anh" 
+                                class="client-service__card-img">
+                            <div class="client-service__card-info">
+                                <span class="client-service__tag"><%= serv.tag %></span>
+                                <h4 class="client-service__name"><%= serv.name %></h4>
+                                <div class="client-service__time">
+                                    <svg class="client-service__icon">
+                                        <use xlink:href="images/symbol.svg#icon-spa"></use>
+                                    </svg>
+                                    <p><span class="Price"><%= serv.price %></span> vnd / <%= serv.time %> phút</p>
+                                </div>
+                                <a href="/services/<%= serv.seoName %>.<%= serv._id %>" class="client-service__link">
+                                    <h6>더 알아보기</h6>
+                                    <svg>
+                                        <use xlink:href="images/symbol.svg#icon-arrow-right"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    <% }) %>
+
+                </div>
+
+                <div class="client-service__show" data-tag="all">
+
+                    <% allServices.forEach(serv=>{ %>
+                        <div class="client-service__card">
+                            <img src="<%= serv.imgUrls[0] %>" alt="anh" 
+                                class="client-service__card-img">
+                            <div class="client-service__card-info">
+                                <span class="client-service__tag"><%= serv.tag %></span>
+                                <h4 class="client-service__name"><%= serv.name %></h4>
+                                <div class="client-service__time">
+                                    <svg class="client-service__icon">
+                                        <use xlink:href="images/symbol.svg#icon-spa"></use>
+                                    </svg>
+                                    <p><span class="Price"><%= serv.price %></span> vnd / <%= serv.time %> phút</p>
+                                </div>
+                                <a href="/services/<%= serv.seoName %>.<%= serv._id %>" class="client-service__link">
+                                    <h6>더 알아보기</h6>
+                                    <svg>
+                                        <use xlink:href="images/symbol.svg#icon-arrow-right"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    <% }) %>
+
+                </div>
+
+            </div>
+        </div>
+
+     <%- include('../includes/ko/client-footer.ejs') %>
+<%- include('../includes/html-footer.ejs') %>

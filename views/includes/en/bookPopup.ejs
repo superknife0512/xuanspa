@@ -1,0 +1,36 @@
+<div class="book-pop">
+    <div class="book-pop__body" data-popup="popup">
+
+        <h4 class="book-pop__title">
+            Service reservation: <%= service.name %>
+        </h4>
+        <form action="/message" class="book-pop__form" method="POST">
+            <div class="form-group">
+                <input type="text" class="form-control" name="name" 
+                        placeholder="Your name">
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" name="email" 
+                        placeholder="Your email">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="phone" 
+                        placeholder="Phone number">
+            </div>
+
+            <div class="form-group">
+                <textarea type="text" class="form-control" name="mess" 
+                        placeholder="Message" rows="3"></textarea>
+            </div>
+
+            <input type="hidden" name="servId" value="<%= service._id %>">
+
+            <span class="book-pop__close">x</span>
+
+            <button class="btn-book">
+                Reserve!
+            </button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<%- include('../includes/html-header.ejs') %>
+    <%- include('../includes/ko/client-header.ejs') %>
+
+        <div class="promotion container">
+            <div class="promotion__show">
+                <% promotions.forEach(prom=>{ %>
+                    <div class="promotion__card">
+                        <img src="<%= prom.imgUrl %>" alt="anh">
+                        <div class="promotion__card-info">
+                            <h4> <%= prom.title %> </h4>
+                            <p><%= prom.desc %></p>
+                            <h5>From <%= prom.timeStart %> to <%= prom.timeEnd %></h5>
+                        </div>
+                        <span class="promotion__discount"> 
+                            <span>
+                                <%= prom.discount %> % 
+                            </span>
+                        </span>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+
+
+     <%- include('../includes/ko/client-footer.ejs') %>
+<%- include('../includes/html-footer.ejs') %>

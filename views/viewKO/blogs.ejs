@@ -1,0 +1,36 @@
+<%- include('../includes/html-header.ejs') %>
+    <%- include('../includes/ko/client-header.ejs') %>
+
+    <div class="blog container">
+        <div class="blog__show">
+            <% blogs.forEach(blog=>{ %>
+
+                <%- include('../includes/ko/blogCard',{
+                    blog: blog
+                }) %>
+
+            <% }) %>
+        </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item <%= page == 1 ? 'disabled' : '' %>">
+                    <a class="page-link" href="/blog?page=1" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <% for(let i=1; i <= numPage; i++){ %>
+                    <li class="page-item <%= page == i ? 'active' : '' %>">
+                        <a class="page-link" href="/blog?page=<%= i %>"><%= i %></a>
+                    </li>
+                <% } %>
+                <li class="page-item <%= page == numPage ? 'disabled' : '' %>">
+                    <a class="page-link" href="/blog?page=<%= numPage %>" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>   
+
+     <%- include('../includes/ko/client-footer.ejs') %>
+<%- include('../includes/html-footer.ejs') %>

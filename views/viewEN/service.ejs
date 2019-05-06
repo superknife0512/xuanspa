@@ -1,49 +1,43 @@
 <%- include('../includes/html-header.ejs') %>
-    <%- include('../includes/vn/client-header.ejs') %>
+    <%- include('../includes/en/client-header.ejs') %>
 
-        <div class="container service">
-            <div class="service__abstract">
-                <p>
-                    <strong>Some story about spa</strong>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum malesuada sem, sit amet ultrices augue porttitor non. Suspendisse et magna varius ligula vestibulum venenatis at eget nunc. Quisque interdum feugiat libero, efficitur euismod tortor suscipit nec. Nam vel lectus odio. Morbi mattis, felis vitae hendrerit fermentum, dolor augue accumsan est, vel rutrum dui tellus in risus. 
-                </p>
-            </div>
-            <div class="service__body">
-                <ul class="service__tabs">
-                    <li class="service__tab tab-active" data-tab="face">
-                        Chăm sóc da mặt
+        <div class="container client-service">
+            <div class="client-service__body">
+                <ul class="client-service__tabs">
+                    <li class="client-service__tab" data-tab="face">
+                        Facial care and treatment
                     </li>
-                    <li class="service__tab" data-tab="massage">
-                        Liệu trình maxa
+                    <li class="client-service__tab" data-tab="massage">
+                        Massage therapy
                     </li>
-                    <li class="service__tab" data-tab="body">
-                        Chăm sóc cơ thể
+                    <li class="client-service__tab" data-tab="body">
+                        Body treatment
                     </li>
-                    <li class="service__tab" data-tab="package">
-                        Các gói toàn diện
+                    <li class="client-service__tab" data-tab="package">
+                        Spa package
                     </li>
-                    <li class="service__tab" data-tab="all">
-                        Toàn bộ dịch vụ
+                    <li class="client-service__tab" data-tab="all">
+                        All services
                     </li>
                 </ul>
 
-                <div class="service__show" data-tag="face">
+                <div class="client-service__show" data-tag="face">
 
                     <% serviceFace.forEach(serv=>{ %>
-                        <div class="service__card">
+                        <div class="client-service__card">
                             <img src="<%= serv.imgUrls[0] %>" alt="anh" 
-                                class="service__card-img">
-                            <div class="service__card-info">
-                                <span class="service__tag"><%= serv.tag %></span>
-                                <h4 class="service__name"><%= serv.name %></h4>
-                                <div class="service__time">
-                                    <svg class="service__icon">
+                                class="client-service__card-img">
+                            <div class="client-service__card-info">
+                                <span class="client-service__tag"><%= serv.tag %></span>
+                                <h4 class="client-service__name"><%= serv.name %></h4>
+                                <div class="client-service__time">
+                                    <svg class="client-service__icon">
                                         <use xlink:href="images/symbol.svg#icon-spa"></use>
                                     </svg>
-                                    <p><%= serv.price %> vnd / <%= serv.time %> phút</p>
+                                    <p><span class="Price"><%= serv.price %></span> vnd / <%= serv.time %> minutes</p>
                                 </div>
-                                <a href="#" class="service__link">
-                                    <h6>Xem thêm</h6>
+                                <a href="/services/<%= serv.seoName %>.<%= serv._id %>" class="client-service__link">
+                                    <h6>Learn more</h6>
                                     <svg>
                                         <use xlink:href="images/symbol.svg#icon-arrow-right"></use>
                                     </svg>
@@ -53,8 +47,117 @@
                     <% }) %>
 
                 </div>
+
+                <div class="client-service__show" data-tag="massage">
+
+                    <% serviceMassage.forEach(serv=>{ %>
+                        <div class="client-service__card">
+                            <img src="<%= serv.imgUrls[0] %>" alt="anh" 
+                                class="client-service__card-img">
+                            <div class="client-service__card-info">
+                                <span class="client-service__tag"><%= serv.tag %></span>
+                                <h4 class="client-service__name"><%= serv.name %></h4>
+                                <div class="client-service__time">
+                                    <svg class="client-service__icon">
+                                        <use xlink:href="images/symbol.svg#icon-spa"></use>
+                                    </svg>
+                                    <p><span class="Price"><%= serv.price %></span> vnd / <%= serv.time %> phút</p>
+                                </div>
+                                <a href="/services/<%= serv.seoName %>.<%= serv._id %>" class="client-service__link">
+                                    <h6>Learn more</h6>
+                                    <svg>
+                                        <use xlink:href="images/symbol.svg#icon-arrow-right"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    <% }) %>
+
+                </div>
+
+                <div class="client-service__show" data-tag="body">
+
+                    <% serviceBody.forEach(serv=>{ %>
+                        <div class="client-service__card">
+                            <img src="<%= serv.imgUrls[0] %>" alt="anh" 
+                                class="client-service__card-img">
+                            <div class="client-service__card-info">
+                                <span class="client-service__tag"><%= serv.tag %></span>
+                                <h4 class="client-service__name"><%= serv.name %></h4>
+                                <div class="client-service__time">
+                                    <svg class="client-service__icon">
+                                        <use xlink:href="images/symbol.svg#icon-spa"></use>
+                                    </svg>
+                                    <p><span class="Price"><%= serv.price %></span> vnd / <%= serv.time %> phút</p>
+                                </div>
+                                <a href="/services/<%= serv.seoName %>.<%= serv._id %>" class="client-service__link">
+                                    <h6>Learn more</h6>
+                                    <svg>
+                                        <use xlink:href="images/symbol.svg#icon-arrow-right"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    <% }) %>
+
+                </div>
+
+                <div class="client-service__show" data-tag="package">
+
+                    <% servicePackage.forEach(serv=>{ %>
+                        <div class="client-service__card">
+                            <img src="<%= serv.imgUrls[0] %>" alt="anh" 
+                                class="client-service__card-img">
+                            <div class="client-service__card-info">
+                                <span class="client-service__tag"><%= serv.tag %></span>
+                                <h4 class="client-service__name"><%= serv.name %></h4>
+                                <div class="client-service__time">
+                                    <svg class="client-service__icon">
+                                        <use xlink:href="images/symbol.svg#icon-spa"></use>
+                                    </svg>
+                                    <p><span class="Price"><%= serv.price %></span> vnd / <%= serv.time %> phút</p>
+                                </div>
+                                <a href="/services/<%= serv.seoName %>.<%= serv._id %>" class="client-service__link">
+                                    <h6>Learn more</h6>
+                                    <svg>
+                                        <use xlink:href="images/symbol.svg#icon-arrow-right"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    <% }) %>
+
+                </div>
+
+                <div class="client-service__show" data-tag="all">
+
+                    <% allServices.forEach(serv=>{ %>
+                        <div class="client-service__card">
+                            <img src="<%= serv.imgUrls[0] %>" alt="anh" 
+                                class="client-service__card-img">
+                            <div class="client-service__card-info">
+                                <span class="client-service__tag"><%= serv.tag %></span>
+                                <h4 class="client-service__name"><%= serv.name %></h4>
+                                <div class="client-service__time">
+                                    <svg class="client-service__icon">
+                                        <use xlink:href="images/symbol.svg#icon-spa"></use>
+                                    </svg>
+                                    <p><span class="Price"><%= serv.price %></span> vnd / <%= serv.time %> phút</p>
+                                </div>
+                                <a href="/services/<%= serv.seoName %>.<%= serv._id %>" class="client-service__link">
+                                    <h6>Learn more</h6>
+                                    <svg>
+                                        <use xlink:href="images/symbol.svg#icon-arrow-right"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    <% }) %>
+
+                </div>
+
             </div>
         </div>
 
-     <%- include('../includes/vn/client-footer.ejs') %>
+     <%- include('../includes/en/client-footer.ejs') %>
 <%- include('../includes/html-footer.ejs') %>

@@ -1,0 +1,60 @@
+<%- include('../includes/html-header.ejs') %>
+    <%- include('../includes/ko/client-header.ejs') %>
+
+        <div class="servDetail grid">
+
+            <div class="servDetail__left">
+                <div class="servDetail__heading">
+                    <div class="servDetail__info">
+                        <svg>
+                            <use xlink:href="images/symbol.svg#icon-eye"></use>
+                        </svg>
+                        <p> <%= service.views %> 전망 </p>
+                    </div>
+                    <div class="servDetail__info">
+                        <svg>
+                            <use xlink:href="images/symbol.svg#icon-spa"></use>
+                        </svg>
+                        <p><span class="Price"><%= service.price %></span>  vnd / 30 의사록 </p>
+                    </div>
+                </div>
+
+                <div class="servDetail__imgs">
+                    <% service.imgUrls.forEach(img=>{ %>
+                        <img src="<%= img %>" 
+                            class="servDetail__img" alt="cax">
+                    <% }) %>
+                </div>
+
+                <div class="servDetail__detail">
+                    <h4 class="servDetail__title">서비스 세부 정보</h4>
+                    <% service.desc.forEach(each=>{ %>
+                        <p><%= each %></p>
+                    <% }) %>
+
+                    <button class="btn-book" id="btn-book">지금 예약</button>
+                </div>
+            </div>
+
+            <div class="servDetail__right">
+                <h4 class="servDetail__title">너는 또한 좋아할지도 모른다</h4>
+                <hr>
+                <% services.forEach((serv, i)=>{  %>
+                    <div class="servDetail__card">
+                        <img src="<%= serv.imgUrls[0] %>" alt="">
+                        <a href="/services/<%= seoNames[i] %>.<%= serv._id %>">
+                            <h5><%= serv.name %></h5>
+                        </a>
+                        <p class="desc"><%= serv.desc.join('') %></p>
+                    </div>
+                <% }) %>
+            </div>
+
+            <%- include('../includes/ko/bookPopup.ejs', {
+                service: service
+            }) %>
+           
+        </div>
+
+     <%- include('../includes/ko/client-footer.ejs') %>
+<%- include('../includes/html-footer.ejs') %>

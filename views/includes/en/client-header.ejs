@@ -1,0 +1,47 @@
+<nav class="cli-header">
+    <header class="cli-header__head">
+        <div class="cli-header__brand">
+            <img src="images/Logo.png" alt="logo" 
+                class="cli-header__logo">
+            <h5>Xuan Spa</h5>
+        </div>
+        <div class="cli-header__nav">
+            <a href="/" class="cli-header__link">
+                Home page
+            </a>
+            <a href="/about-us" class="cli-header__link <%= activeTab === 'about' ? 'cli-header__active' : '' %>">
+                About us
+            </a>
+            <a href="/services" class="cli-header__link <%= activeTab === 'service' ? 'cli-header__active' : '' %>">
+                Services
+            </a>
+            <a href="/product" class="cli-header__link <%= activeTab === 'product' ? 'cli-header__active' : '' %>">
+                Products
+            </a>
+            <a href="/blog" class="cli-header__link <%= activeTab === 'blog' ? 'cli-header__active' : '' %>" >
+                Our Blogs
+            </a>
+            <a href="/promotion" class="cli-header__link <%= activeTab === 'promotion' ? 'cli-header__active' : '' %>" >
+                Promotion
+            </a>
+            <a href="/contact" class="cli-header__link <%= activeTab === 'contact' ? 'cli-header__active' : '' %>">
+                Booking
+            </a>
+            <a href="/recruit" class="cli-header__link <%= activeTab === 'recruit' ? 'cli-header__active' : '' %>">
+                Recruitment
+            </a>
+        </div>
+        <div class="responsive">
+            <svg class="responsive__menu">
+                <use xlink:href="images/symbol.svg#icon-menu"></use>
+            </svg>
+        </div>
+        <%- include('./res-menu.ejs') %>
+    </header>
+
+    <div class="cli-header__title">
+        <h4><%= headerTitle %></h4>
+        <img src="images/divider.png" alt="divider" 
+        class="cli-header__divider">
+    </div>
+</nav>

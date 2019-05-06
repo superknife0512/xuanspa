@@ -284,10 +284,12 @@ exports.getProduct = async (req,res,next)=>{
         const products = await Product.find({lang});
         const dir = langDir(lang);
 
+        const headerTitle = titleTrans(lang, 'Sản phẩm', 'Products', '제작품')
+
         res.render(`${dir}/product`,{
             activeTab: 'product',
-            headerTitle: 'Sản phẩm',
-            title: 'Sản phẩm',
+            headerTitle: headerTitle,
+            title: headerTitle,
             products
         })
         
