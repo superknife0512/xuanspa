@@ -18,9 +18,11 @@ const adminSchema = new mongoose.Schema({
     heroImgUrl: {
         type: String,
     },
+    heroBlobName: String,
     gallerieUrls:[{
         type: String,
     }],
+    galleryBlobNames: [String],
     defaultEmail: {
         type: String,
     },

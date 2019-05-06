@@ -17,6 +17,8 @@ const productSchema = new mongoose.Schema({
 
     imgUrl: String,
 
+    blobName: String,
+
     lang: String
 })
 

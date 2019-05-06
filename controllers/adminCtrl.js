@@ -109,22 +109,30 @@ exports.postEditAdmin = async (req,res,next)=>{
         if(lang==='vn'){
             if(req.files['heroImg'] || req.files['gallery']){
 
-                if(req.files['heroImg'][0]){
+                if(req.files['heroImg']){
                     heroImg = req.files['heroImg'][0];
-                    heroImgUrl = heroImg.path.replace(/\\/g, '/');
-                    deleteFile(adminData.heroImgUrl);
+                    const heroImgUrl = heroImg.url;
+                    const heroBlobName = heroImg.blob
+                    
+                    deleteFile('admin', adminData.heroBlobName);
                     adminData.heroImgUrl = heroImgUrl;
+                    adminData.heroBlobName = heroBlobName;
                 }
                 if(req.files['gallery']){
     
                     galleries = req.files['gallery'];
-                    gallerieUrls = galleries.map(gal=>{
-                        return gal.path.replace(/\\/g, '/')
+                    const gallerieUrls = galleries.map(gal=>{
+                        return gal.url
                     })
-                    adminData.gallerieUrls.forEach(img=>{
-                        deleteFile(img)
+                    const galleryBlobNames = galleries.map(gal=>{
+                        return gal.blob
+                    })
+
+                    adminData.galleryBlobNames.forEach(blName=>{
+                        deleteFile('admin', blName)
                     })
                     adminData.gallerieUrls = gallerieUrls
+                    adminData.galleryBlobNames = galleryBlobNames
                 }
             }
         }
@@ -233,7 +241,11 @@ exports.postCreateService = async (req,res,next)=>{
         }
         
         const imgArr = req.files.map(file=>{
-            return file.path.replace(/\\/g, '/');
+            return file.url
+        })
+
+        const blobNames = req.files.map(file=>{
+            return file.blob
         })
 
         const service = new Service({
@@ -244,7 +256,8 @@ exports.postCreateService = async (req,res,next)=>{
             price,
             time,
             lang,
-            imgUrls: imgArr
+            imgUrls: imgArr,
+            blobNames
         })
 
         await service.save();
@@ -288,13 +301,18 @@ exports.postEditService = async (req,res,next)=>{
         
         const files = req.files;
         if(files[0]){
-            service.imgUrls.forEach(imgUrl=>{
-                deleteFile(imgUrl)
+            service.blobNames.forEach(blName=>{
+                deleteFile('services', blName)
             })
             let imgUrls = files.map(file=>{
-                return file.path.replace(/\\/g, '/');
+                return file.url
+            })
+
+            const blobNames = files.map(file=>{
+                return file.blob
             })
             service.imgUrls = imgUrls;
+            service.blobNames = blobNames;
         }
 
         await service.save();
@@ -310,8 +328,8 @@ exports.deleteService = async (req,res,next)=>{
         const servId = req.body.servId;
         const service = await Service.findById(servId);
     
-        service.imgUrls.forEach(img=>{
-            deleteFile(img);
+        service.blobNames.forEach(blName=>{
+            deleteFile('services', blName);
         })
     
         await Service.findByIdAndRemove(servId);
@@ -389,7 +407,8 @@ exports.postCreateBlog = async (req,res,next)=>{
             })
         }
 
-        const imgUrl = req.file.path.replace(/\\/g, '/');
+        const imgUrl = req.file.url;
+        const blobName = req.file.blobName;
 
         const blog =new Blog({
             title,
@@ -398,7 +417,8 @@ exports.postCreateBlog = async (req,res,next)=>{
             html,
             delta,
             views,
-            imgUrl
+            imgUrl,
+            blobName
         })
 
         await blog.save();
@@ -441,9 +461,10 @@ exports.postEditBlog = async (req,res,next)=>{
         blog.delta = delta;
 
         if(req.file){
-            deleteFile(blog.imgUrl);
-            imgUrl = req.file.path.replace(/\\/g, '/');
+            deleteFile('blogs', blog.blobName);
+            imgUrl = req.file.url;
             blog.imgUrl = imgUrl;
+            blog.blobName = req.file.blob;
         }
 
         await blog.save();
@@ -458,7 +479,7 @@ exports.deleteBlog= async (req,res,next)=>{
     try {
         const blog = await Blog.findById(req.body.blogId);
 
-        deleteFile(blog.imgUrl);
+        deleteFile('blogs', blog.blobName);
         await Blog.findByIdAndRemove(req.body.blogId);
 
         res.redirect('/admin/blog');
@@ -543,7 +564,8 @@ exports.postCreatePromotion = async (req,res,next)=>{
             timeStart,
             timeEnd,
             lang,
-            imgUrl: req.file.path.replace(/\\/g, '/')
+            imgUrl: req.file.url,
+            blobName: req.file.blob
         })
 
         await promo.save();
@@ -582,7 +604,9 @@ exports.postEditPromotion = async (req,res,next)=>{
         
         const file = req.file;
         if(file){
-            promotion.imgUrl = file.path.replace(/\\/g, '/');
+            deleteFile('promotions', promotion.blobName)
+            promotion.imgUrl = file.url;
+            promotion.blobName = file.blob;
         }
 
         promotion.title = title;
@@ -605,7 +629,7 @@ exports.deletePromotion = async (req,res,next)=>{
         
         const promotion = await Promotion.findById(req.body.proId);
 
-        deleteFile(promotion.imgUrl);
+        deleteFile('promotions', promotion.blobName);
         await Promotion.findByIdAndRemove(req.body.proId);
 
         res.redirect('/admin/promotion')
@@ -686,7 +710,8 @@ exports.postCreateProduct = async (req,res,next)=>{
             brand,
             desc,
             lang,
-            imgUrl: req.file.path.replace(/\\/g, '/')
+            imgUrl: req.file.url,
+            blobName: req.file.blobName
         })
 
         await product.save();
@@ -725,8 +750,9 @@ exports.postEditProduct = async (req,res,next)=>{
         const file = req.file;
         
         if(file){
-            deleteFile(product.imgUrl);
-            product.imgUrl = file.path.replace(/\\/g, '/');
+            deleteFile('product', product.blobName);
+            product.imgUrl = file.url;
+            product.blobName = file.blob;
         }
 
         product.name = name;
@@ -743,12 +769,10 @@ exports.postEditProduct = async (req,res,next)=>{
 }
 
 exports.deleteProduct = async (req,res,next)=>{
-    try {
-        console.log(req.body.prodId);
-        
+    try {        
         const product = await Product.findById(req.body.prodId);
 
-        deleteFile(product.imgUrl);
+        deleteFile('product', product);
         await Product.findByIdAndRemove(req.body.prodId);
 
         res.redirect('/admin/product')

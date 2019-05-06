@@ -31,6 +31,8 @@ const serviceSchema = new mongoose.Schema({
         required: true,
     },
 
+    blobNames: [String],
+
     time: {
         type: Number,
         required: true,

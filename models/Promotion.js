@@ -25,6 +25,8 @@ const proSchema = new mongoose.Schema({
 
     imgUrl: String,
 
+    blobName: String,
+
     lang: {
         required: true,
         type: String,

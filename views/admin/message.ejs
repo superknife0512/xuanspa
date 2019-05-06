@@ -5,6 +5,8 @@
 <div class="mess container">
     <h2>Messages</h2>
 
+    <hr>
+
     <% messages.forEach((mess, i)=>{ %>
         <div class="mess__card">
             <div class="mess__short">
@@ -30,7 +32,9 @@
                 <input type="hidden" name="messId" value="<%= mess._id %>">
             </div>
             <div class="mess__detail">
-                <h5>Service: <%= mess.service.name %></h5>
+                <% if(mess.service) {%>
+                    <h5>Service:  <%= mess.service.name %></h5>
+                <% } %>
                 <hr>
                 <p><%= mess.message %></p>
             </div>
