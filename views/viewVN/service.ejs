@@ -5,19 +5,19 @@
             <div class="client-service__body">
                 <ul class="client-service__tabs">
                     <li class="client-service__tab" data-tab="face">
-                        Chăm sóc da mặt
+                       Trị liệu da mặt
                     </li>
-                    <li class="client-service__tab" data-tab="massage">
-                        Liệu trình maxa
+                    <li class="client-service__tab" data-tab="massage">                        
+                        Massage toàn thân
                     </li>
                     <li class="client-service__tab" data-tab="body">
-                        Chăm sóc cơ thể
+                        Chăm sóc da toàn thân
                     </li>
                     <li class="client-service__tab" data-tab="package">
-                        Các gói toàn diện
+                        Các gói spa làm đẹp
                     </li>
                     <li class="client-service__tab" data-tab="all">
-                        Toàn bộ dịch vụ
+                        Tẩy lông
                     </li>
                 </ul>
 
@@ -131,7 +131,7 @@
 
                 <div class="client-service__show" data-tag="all">
 
-                    <% allServices.forEach(serv=>{ %>
+                    <% serviceOther.forEach(serv=>{ %>
                         <div class="client-service__card">
                             <img src="<%= serv.imgUrls[0] %>" alt="anh" 
                                 class="client-service__card-img">

@@ -1,7 +1,7 @@
 $color-header: #1b804d;
 
 .cli-header{
-    background-image: linear-gradient( 90deg, rgba($color-header, .7) 0%, rgba($color-header, .7) 100%),
+    background-image: linear-gradient( 90deg, rgba(28, 86, 59, 0.7) 0%,rgba(27,150,93,.7) 100%),
                         url('/images/header.JPG');
     background-size: cover;
     background-position: center;
@@ -86,12 +86,15 @@ $color-header: #1b804d;
             text-align: center;
             text-transform: capitalize;
             @include viewport(661px){
-                font-size: 3rem;
+                font-size: 2.2rem;
             }
         }
     }
     &__divider{
         width: 15rem;
+        @include viewport(661px){
+            width: 10rem
+        }
     }
 
     &__active{

@@ -13,7 +13,6 @@ const adminSchema = new mongoose.Schema({
     },
     subTitle: {
         type: String,
-        required: true,
     },
     heroImgUrl: {
         type: String,

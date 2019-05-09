@@ -151,7 +151,6 @@ exports.getService = async (req,res,next)=>{
     try {
         const langFilter = req.query.lang || null;
         const tagFilter = req.query.tag || null;
-        console.log(langFilter, tagFilter);
         let services;
 
         if(!langFilter && !tagFilter){
@@ -171,14 +170,16 @@ exports.getService = async (req,res,next)=>{
             } else if (serv.tag === 'massage' ){
                 newTab = 'Massage therapy'
             } else if (serv.tag === 'body'){
-                newtab = 'Body treatment'
+                newTab = 'Body treatment'
             } else if (serv.tag ==='package'){
                 newTab = 'Spa package'
             } else {
                 newTab = 'Other'
             }
+            console.log(newTab);
             return newTab
         })
+
 
         res.render('admin/service',{
             services,

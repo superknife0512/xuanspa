@@ -167,24 +167,21 @@ exports.getService = async (req,res,next)=>{
         const serviceMassage = translate.translateTagMass(getServiceByTag('massage'),lang);
         const serviceBody = translate.translateTagBody(getServiceByTag('body'),lang);
         const servicePackage = translate.translateTagPackage(getServiceByTag('package'),lang);
+        const serviceOther = translate.translateTagOther(getServiceByTag('other'),lang);
 
-        const allServices = [
-            ...serviceFace,
-            ...serviceMassage,
-            ...serviceBody,
-            ...servicePackage
-        ]
+        console.log(serviceMassage);
+
         const headerTitle = titleTrans(lang, 'Dịch vụ', 'Services', '서비스')
 
         res.render(`${dir}/service`,{
-            title: 'Service',
+            title:  headerTitle,
             activeTab: 'service',
             headerTitle,
-            allServices,
             serviceFace,
             serviceBody,
             serviceMassage,
-            servicePackage
+            servicePackage,
+            serviceOther
         })
     } catch (err) {
         next(err)
@@ -342,6 +339,8 @@ exports.getBlogDetail = async (req,res,next)=>{
         const blog = blogs.find(blog=>{
             return blog._id == blogId
         })
+
+        const date = blog.createdAt.toISOString().split('T')[0].split('-').reverse().join('-')
         const dir = langDir(lang);
 
         const headerTitle = titleTrans(lang, 'Bài viết chi tiết', 'Into the detail', '상세 기사');
@@ -351,7 +350,8 @@ exports.getBlogDetail = async (req,res,next)=>{
             headerTitle: headerTitle,
             title: headerTitle,
             blog,
-            others
+            others,
+            date
         })
         
     } catch (err) {
