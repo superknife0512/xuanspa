@@ -31,15 +31,23 @@
                             <input type="text" class="book__input"
                                         placeholder="Số điện thoại" name="phone">
                         </div>
-                        <input type="email" class="book__input"
-                                    placeholder="Email" name="email">
+                        <div class="book__inline">
+                            <input type="email" class="book__input mr-2"
+                                        placeholder="Email" name="email">
+                            <input type="number" class="book__input"
+                                        placeholder="Số lượng khách" name="number">                            
+                        </div>
 
-                        <select name="service" id="service" class="book__option pr-4" >
-                            <option value="none">Dịch vụ yêu cầu</option>
-                            <% services.forEach(serv=>{ %>
-                                <option value="<%= serv._id %>"><%= serv.name %></option>
-                            <% }) %>
-                        </select>
+                        <div class="book__inline">
+                            <select name="service" id="service" class="book__option pr-4 mr-2" >
+                                <option value="none">Dịch vụ yêu cầu</option>
+                                <% services.forEach(serv=>{ %>
+                                    <option value="<%= serv._id %>"><%= serv.name %></option>
+                                <% }) %>
+                            </select>
+                            <input type="text" class="book__input" id="datepicker" 
+                                placeholder="Bạn sẽ đến khi nào" name="time">
+                        </div>
                         
                         <textarea type="text" class="book__input--area pt-2"
                                     placeholder="Lời nhắn"
@@ -47,7 +55,10 @@
                                     name="mess"></textarea>
             
                         <button class="btn-book mt-2">Gửi tin nhắn</button>
+                        
                     </form>
+
+                    
                 </div>
                 <div class="contact__info">
                     <h4 class="contact__info-title">
@@ -93,7 +104,14 @@
 
             </div>
         </div>
-        
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            $( function() {
+                $( "#datepicker" ).datepicker();
+            } );
+        </script>
         <div id="map"></div>   
         
      <%- include('../includes/vn/client-footer.ejs') %>

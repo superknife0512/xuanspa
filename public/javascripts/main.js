@@ -11,6 +11,7 @@ import'./function/priceFilter'
 import'./function/serviceImg'
 import'./function/bookFunction'
 import'./function/message'
+import'./function/datePicker'
 
 import { shortenText, dateFilter } from './function/descFilter.js'
 

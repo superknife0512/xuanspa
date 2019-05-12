@@ -7,6 +7,7 @@ const Message = require('../models/Message');
 const Blog = require('../models/Blog');
 const Promotion = require('../models/Promotion');
 const translate = require('../utils/translate');
+const senMail = require('../utils/sendMail');
 
 //2 helper function
 const getAdminDataVN = async ()=>{
@@ -226,10 +227,12 @@ exports.postMessage = async (req,res,next)=>{
     try {
         const name = req.body.name;
         const phone = req.body.phone;
-        const servId = req.body.servId;
+        const servId = req.body.service;
         const email = req.body.email;
+        const number = req.body.number;
+        const time = req.body.time;
 
-        if(!name || !phone || !email){
+        if(!name || !phone || !email || !number){
             return res.redirect('/services')
         }
         let objectId = mongoose.Types.ObjectId(servId);
@@ -239,6 +242,8 @@ exports.postMessage = async (req,res,next)=>{
             isBook = true;
         }
 
+        const service = await Service.findById(servId);
+
         const message = req.body.mess;
 
         const booking = new Message({
@@ -247,8 +252,28 @@ exports.postMessage = async (req,res,next)=>{
             service: objectId,
             email,
             message,
+            number,
+            time,
             isBook
         })
+
+        const html = `
+                <div>
+                <b style="color: palevioletred">
+                    Tên khách hàng: ${name} <br>
+                    Số điện thoại: ${phone} <br>
+                    Email: ${email} <br>
+                </b>
+                <p>
+                    Số lượng khách: ${number} <br>
+                    Thời gian đến: ${time} <br>
+                    Dịch vụ yêu cầu: ${service.name} <br>
+                    Tin nhắn khác hàng gửi: ${message}
+                </p>
+            </div>
+        `
+
+        senMail('xuanspa@gmail.com','Client Message', html);
         
         await booking.save();
 

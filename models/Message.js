@@ -17,6 +17,13 @@ const messSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    number: {
+        type: Number,
+        required: true,
+    },
+    time :{
+        type: String,
+    },
     isBook: {
         type: Boolean,
         require: true

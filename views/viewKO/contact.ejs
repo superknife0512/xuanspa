@@ -31,15 +31,23 @@
                             <input type="text" class="book__input"
                                         placeholder="전화 번호" name="phone">
                         </div>
-                        <input type="email" class="book__input"
-                                    placeholder="이메일" name="email">
+                        <div class="book__inline">
+                            <input type="email" class="book__input mr-2"
+                                        placeholder="이메일" name="email">
+                            <input type="number" class="book__input"
+                                        placeholder="얼마나 많은 사람들이 너와 함께 가니?" name="number">                            
+                        </div>
 
-                        <select name="service" id="service" class="book__option pr-4" >
-                            <option value="none">필수 서비스</option>
-                            <% services.forEach(serv=>{ %>
-                                <option value="<%= serv._id %>"><%= serv.name %></option>
-                            <% }) %>
-                        </select>
+                        <div class="book__inline">
+                            <select name="service" id="service" class="book__option pr-4 mr-2" >
+                                <option value="none">필수 서비스</option>
+                                <% services.forEach(serv=>{ %>
+                                    <option value="<%= serv._id %>"><%= serv.name %></option>
+                                <% }) %>
+                            </select>
+                            <input type="text" class="book__input" id="datepicker"
+                                placeholder="언제 오니?" name="time">
+                        </div>
                         
                         <textarea type="text" class="book__input--area pt-2"
                                     placeholder="귀하의 메시지"
@@ -95,6 +103,14 @@
         </div>
         
         <div id="map"></div>   
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            $( function() {
+                $( "#datepicker" ).datepicker();
+            } );
+        </script>
         
      <%- include('../includes/ko/client-footer.ejs') %>
 <%- include('../includes/html-footer.ejs') %>

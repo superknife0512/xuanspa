@@ -112,10 +112,29 @@
     }
     &__content{
         margin-bottom: 2rem;
+        padding: 0 8rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(0, 0, 0, .2);
         img{
             max-width: 100%;
+            object-fit: cover;
         }
         p{
+        }
+
+        @include viewport(722px){
+            padding: 2rem 1rem;
+        }
+        @include viewport(500px){
+            padding: 0;
+            border: none;
+        }
+        iframe{
+            width: 100%;
+            height: 30rem;
+            @include viewport(600px){
+                height: 20rem;
+            }
         }
     }
     &__other{
