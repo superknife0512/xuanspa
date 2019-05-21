@@ -30,7 +30,7 @@ exports.postAdminData = async (req,res,next)=>{
         let heroImg, galleries, heroImgUrl, gallerieUrls;
         const lang = req.body.lang;
 
-        if(lang === 'vn'){
+        if(lang === 'vn') {
             heroImg = req.files['heroImg'][0];
             galleries = req.files['gallery'];
             heroImgUrl = heroImg.path.replace(/\\/g, '/');
