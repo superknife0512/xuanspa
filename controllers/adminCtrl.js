@@ -288,18 +288,20 @@ exports.postEditService = async (req,res,next)=>{
     try {
         const servId = req.body.servId;
         const name = req.body.name;
-        const desc = req.body.desc;
+        let desc = req.body.desc;
         const tag = req.body.tag;
         const price = req.body.price;
         const time = req.body.time;
-
         const service = await Service.findById(servId);
+        desc = desc.split(';;');
+        console.log(desc);
         service.name = name;
         service.desc = desc;
         service.tag = tag;
         service.price = price;
         service.time = time;
         
+
         const files = req.files;
         if(files[0]){
             service.blobNames.forEach(blName=>{

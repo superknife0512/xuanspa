@@ -10,14 +10,13 @@ const toolbarOptions = [
     [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
     [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
     [{ 'direction': 'rtl' }],                         // text direction
-  
-    [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+    // custom dropdown
     [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
   
     [{ 'color': ['#841429', '#ca2242', '#ec3154', '#199f61', '#22ca7d', '#2289ca', '#1d9ae9'] }, { 'background': [] }],          // dropdown with defaults from theme
     [{ 'font': [] }],
     [{ 'align': [] }],
-    ['video'],  
+    ['video', 'link'],  
     ['clean']                                         // remove formatting button
   ];
 let quill;

@@ -61,7 +61,11 @@
 
     &__detail{
         p{
-            margin-bottom: 2rem;
+            margin-bottom: .5rem;
+            font-size: 1rem;
+        }
+        button{
+            margin-top: 1rem;
         }
     }
     &__title{

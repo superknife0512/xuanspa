@@ -15,7 +15,7 @@
                         <svg>
                             <use xlink:href="images/symbol.svg#icon-spa"></use>
                         </svg>
-                        <p><span class="Price"><%= service.price %></span>  vnd / 30 phut </p>
+                        <p><span class="Price"><%= service.price %></span>  vnd / <%= service.time %> phut </p>
                     </div>
                 </div>
 
@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="servDetail__detail">
-                    <h4 class="servDetail__title">Chi tiếc dịch vụ</h4>
+                    <h4 class="servDetail__title">Chi tiết dịch vụ</h4>
                     <% service.desc.forEach(each=>{ %>
                         <p><%= each %></p>
                     <% }) %>
