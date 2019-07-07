@@ -2,14 +2,22 @@
     margin-top: 3rem;
     &__content{
 
-        // h1,h2,h3,h4{
-        //     font-family: $font-title;
-        // }
         img{
             max-width: 100%;
         }
         p{
             margin-bottom: 0;
+        }
+        .ql-video{
+            display: block;
+            margin: 0 auto;
+            width: 45rem ;
+            height: 32rem ;
+
+            @include viewport(869px){
+                width: 100%;
+                height: 20rem;
+            }
         }
     }
     &__hr{
