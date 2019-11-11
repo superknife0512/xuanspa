@@ -16,7 +16,7 @@
             <%= blog.shortDesc %>
         </p>
         <div class="blog__action">
-            <a href="/blog/<%= blog._id %>">Xem ngay</a>
+            <a href="/blog/<%= blog.title.replace(/(\/|\\| |\?|=)/g, '-') %>.<%= blog._id %>">Xem ngay</a>
             <svg>
                 <use xlink:href="images/symbol.svg#icon-arrow-right"></use>
             </svg>

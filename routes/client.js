@@ -24,7 +24,7 @@ router.get('/product', clientCtrl.getProduct);
 
 // blogs
 router.get('/blog', clientCtrl.getBlogs);
-router.get('/blog/:blogId', clientCtrl.getBlogDetail);
+router.get('/blog/*.:blogId', clientCtrl.getBlogDetail);
 
 // contact
 router.get('/contact', clientCtrl.getContact);
