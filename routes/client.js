@@ -32,6 +32,9 @@ router.get('/contact', clientCtrl.getContact);
 // recruit
 router.get('/recruit', clientCtrl.getRecruit);
 
+//footer
+router.get('/api/footer', clientCtrl.fetchFooterInfo)
+
 
 
 

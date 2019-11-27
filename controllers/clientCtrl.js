@@ -8,6 +8,7 @@ const Blog = require('../models/Blog');
 const Promotion = require('../models/Promotion');
 const translate = require('../utils/translate');
 const senMail = require('../utils/sendMail');
+const Footer = require('../models/Footer')
 
 //2 helper function
 const getAdminDataVN = async ()=>{
@@ -440,6 +441,20 @@ exports.getRecruit = async (req,res,next)=>{
             adminData,
         })
     } catch(err){
+        next(err);
+    }
+}
+
+// footer info 
+exports.fetchFooterInfo = async (req,res,next)=>{
+    try {
+        const footer = await Footer.findById('5dde670b79e6460becdb84a7');
+    
+        res.status(200).json({
+            ...footer._doc
+        })
+        
+    } catch (err) {
         next(err);
     }
 }

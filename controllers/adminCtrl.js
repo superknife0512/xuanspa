@@ -4,6 +4,7 @@ const Promotion = require('../models/Promotion');
 const Product = require('../models/Product');
 const AdminData = require('../models/AdminData');
 const Message = require('../models/Message');
+const Footer = require('../models/Footer')
 
 const deleteFile = require('../utils/deleteImg');
 // ADMIN SECTION ****************************************************
@@ -814,6 +815,81 @@ exports.deleteMessage = async (req,res,next)=>{
         await Message.findOneAndRemove(messId);
 
         res.redirect('/admin/message');
+        
+    } catch (err) {
+        next(err)
+    }
+}
+
+// FOOTER --------------------------
+exports.getFooter = async (req,res,next)=>{
+    const footer = await Footer.findById('5dde670b79e6460becdb84a7');
+    try {
+        res.render('admin/footer', {
+            title: 'Footer',
+            activeTab: 'footer',
+            editMode: true,
+            err: null,
+            footer
+        })
+        
+    } catch (err) {
+        next(err)
+    }
+}
+
+exports.postFooter = async (req,res,next)=>{
+    try {
+        const fb = req.body.fb;
+        const trip = req.body.trip;
+        const talk = req.body.talk;
+        const ig = req.body.ig;
+        const email = req.body.email;
+
+        const file = req.file;
+
+        const footer = new Footer({
+            fb,
+            talk,
+            ig,
+            trip,
+            email,
+            imgUrl: file.url
+        })
+        await footer.save();
+        res.redirect('/admin/footer')
+
+    } catch (err) {
+        next(err)
+    }
+}
+
+exports.putFooter = async (req,res,next)=>{
+    const footer = await Footer.findById('5dde670b79e6460becdb84a7');
+    try {
+        const fb = req.body.fb;
+        const trip = req.body.trip;
+        const talk = req.body.talk;
+        const ig = req.body.ig;
+        const email = req.body.email;
+
+        const file = req.file;
+        console.log(file);
+        if(file) {
+            const blobName = /\/(banner-.*$)/.exec(footer.imgUrl)[1];
+            footer.imgUrl = file.url;
+            deleteFile('admin', blobName);
+        }
+
+        footer.fb = fb;
+        footer.trip = trip;
+        footer.talk = talk;
+        footer.ig = ig;
+        footer.email = email;
+
+        await footer.save();
+
+        res.redirect('/admin/footer')
         
     } catch (err) {
         next(err)

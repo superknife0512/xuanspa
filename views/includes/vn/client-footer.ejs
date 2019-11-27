@@ -1,4 +1,7 @@
-<nav class="footer__wrapper">
+
+
+<nav class="footer__wrapper" id="footer">
+    <img :src="footer.imgUrl" alt="banner" class="footer__banner">
     <div class="container footer">
         <div class="footer__block">
             <h3 class="footer__title">
@@ -41,27 +44,27 @@
                         <use xlink:href="images/symbol.svg#icon-facebook-with-circle"></use>
                     </svg>
                     <h5 class="footer__icon-info">
-                        <a href="https://www.facebook.com/XuanSpaDaNang/"
+                        <a :href="footer.fb"
                             target="blank">
-                            Xuanspadanang
+                            {{ footer.fb }}
                         </a>
                     </h5>
                 </div>
                 <div class="footer__info-block">
                     <img src="images/kakaologo.svg" alt="logo" class="footer__info-img">
                     <h5 class="footer__icon-info">
-                        <a href="https://www.facebook.com/XuanSpaDaNang/"
+                        <a :href="footer.talk"
                             target="blank">
-                            Xuanspadanang
+                            {{ footer.talk }}
                         </a>
                     </h5>
                 </div>
                  <div class="footer__info-block">
                     <img src="images/trip_logo.png" alt="logo" class="footer__info-img">
                     <h5 class="footer__icon-info">
-                        <a href="https://www.tripadvisor.com/Attraction_Review-g298085-d16731366-Reviews-Xuan_Spa_Boutique-Da_Nang.html"
+                        <a :href="footer.trip"
                             target="blank">
-                            Trip advisor
+                            {{footer.trip}}
                         </a>
                     </h5>
                 </div>
@@ -70,9 +73,9 @@
                         <use xlink:href="images/symbol.svg#icon-instagram"></use>
                     </svg>
                     <h5 class="footer__icon-info">
-                        <a href="https://www.instagram.com/xuanspaboutique/"
+                        <a :href="footer.ig"
                             target="blank">
-                            Xuanspadanang
+                            {{footer.ig}}
                         </a>
                     </h5>
                 </div>
@@ -81,9 +84,9 @@
                         <use xlink:href="images/symbol.svg#icon-mail"></use>
                     </svg>
                     <h5 class="footer__icon-info">
-                        <a href="https://www.facebook.com/XuanSpaDaNang/"
+                        <a :href=footer.email
                             target="blank">
-                            Xuanspadanang@gmail.com
+                            {{footer.email}}
                         </a>
                     </h5>
                 </div>
@@ -105,3 +108,5 @@
         </div>
     </div>
 </nav>
+
+<script src="../../../public/javascripts/function/footerFetching.js"></script>

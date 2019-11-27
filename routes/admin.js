@@ -39,6 +39,7 @@ const uploadService = multer({storage: serviceImgs}).array('images', 10);
 const uploadBlog = multer({storage: blogImgs}).single('image');
 const uploadPromotion = multer({storage: promotionImgs}).single('image')
 const uploadProduct = multer({storage: productImg}).single('image')
+const uploadAdminFooter = multer({storage: adminImgs}).single('banner')
 const uploadAdmin = multer({storage: adminImgs}).fields([{name: 'heroImg', maxCount: 1}, {name: 'gallery', maxCount: 12}])
 
 const router = express.Router();
@@ -78,6 +79,10 @@ router.post('/delete-product', adminCtrl.deleteProduct); // done
 
 router.get('/message',authProtect, adminCtrl.getMessage);
 router.post('/delete-message',authProtect, adminCtrl.deleteMessage);
+
+router.get('/footer', authProtect, adminCtrl.getFooter)
+router.post('/post-footer', authProtect, uploadAdminFooter, adminCtrl.postFooter)
+router.post('/put-footer', authProtect, uploadAdminFooter, adminCtrl.putFooter)
 
 
 

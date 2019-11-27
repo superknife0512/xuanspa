@@ -49,6 +49,9 @@
         display: flex;
         align-items: center;
         margin-bottom: 1.8rem;
+        @include viewport(500px){
+            flex-direction: column;
+        }
     }
     &__icon{
         height: 2.2rem;
@@ -68,6 +71,10 @@
         a{
             &:link, &:visited{
                 color: #343434;
+                font-size: 1rem;
+                @include viewport(400px){
+                    font-size: .85rem;
+                }
             }
         }
 
@@ -84,5 +91,9 @@
         width: 7rem;
         object-fit: cover;
         
+    }
+    &__banner{
+        width: 100%;
+        object-fit: cover;
     }
 }
