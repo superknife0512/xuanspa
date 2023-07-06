@@ -16,6 +16,11 @@ exports.getSignup = async (req,res,next)=>{
 exports.postSignup = async (req,res,next)=>{
     try {
         const email = req.body.email;
+        const existedAdmin = await Admin.findOne({email: email});
+        if (existedAdmin) {
+            res.redirect('/auth/signup')
+        }
+
         const password = req.body.password;
 
         const hasPass =await bcrypt.hash(password, 10);

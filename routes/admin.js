@@ -5,6 +5,8 @@ const authProtect = require('../middleware/authProtect');
 
 const MulterAzureStorage = require('multer-azure-storage');
 
+require('dotenv').config()
+
 const serviceImgs = new MulterAzureStorage({
     azureStorageConnectionString: process.env.AZURE_CONNECTION_STRING,
     containerName: 'services',

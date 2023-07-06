@@ -20,11 +20,16 @@
             </div>
 
             <div class="form-group">
+                <input type="date" class="form-control" name="time" 
+                        placeholder="Ngày bạn đến">
+            </div>
+
+            <div class="form-group">
                 <textarea type="text" class="form-control" name="mess" 
                         placeholder="Lời nhắn" rows="3"></textarea>
             </div>
 
-            <input type="hidden" name="servId" value="<%= service._id %>">
+            <input type="hidden" name="service" value="<%= service._id %>">
 
             <span class="book-pop__close">x</span>
 

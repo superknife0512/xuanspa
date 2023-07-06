@@ -1,15 +1,14 @@
 
 const {
     Aborter,
-    BlobURL,
     BlockBlobURL,
     ContainerURL,
     ServiceURL,
     SharedKeyCredential,
-    StorageURL,
-    uploadStreamToBlockBlob
+    StorageURL
 } = require('@azure/storage-blob');
 
+require('dotenv').config()
 const STORAGE_ACCOUNT_NAME = process.env.AZURE_STORAGE_ACCOUNT_NAME;
 const ACCOUNT_ACCESS_KEY = process.env.AZURE_STORAGE_ACCOUNT_ACCESS_KEY;
 

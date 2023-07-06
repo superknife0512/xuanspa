@@ -36,20 +36,20 @@
     }
 
     &__imgs{
-        height: 39rem;
+        height: 30rem;
         width: 100%;
         border: 1.5rem solid rgb(243, 243, 243);
         margin-bottom: 2rem;
         
         @include viewport(1400px){
             height: 30rem;
+            width: 100%;
         }
         @include viewport(500px){
             height: 16.5rem;
             border: .7rem solid rgb(243, 243, 243);
 
-        }
-        
+        }        
     }
     &__img{
         height: 100%;

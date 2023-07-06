@@ -8,7 +8,8 @@
         margin-bottom: 1.5rem;
     }
     &__short{
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr) 2fr repeat(2, 1fr);
         padding: 1.2rem;
         justify-content: space-around;
         cursor: pointer;

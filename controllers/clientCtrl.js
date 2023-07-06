@@ -33,6 +33,7 @@ const titleTrans = (lang, vn, en, ko)=>{
 const getServices = async (lang)=>{
     try {
         const services = await Service.find({lang: lang});
+        console.log('services ', services);
         return services;
     } catch (err) {
         throw err
@@ -76,11 +77,12 @@ exports.getHomePage = async (req,res,next)=>{
         let aditionalInfo = langAdminData || adminDataVN;
 
         const adminData = {
-            ...aditionalInfo._doc,
-            heroImgUrl: adminDataVN.heroImgUrl,
-            gallerieUrls: adminDataVN.gallerieUrls
+            ...aditionalInfo?._doc,
+            heroImgUrl: adminDataVN?.heroImgUrl,
+            gallerieUrls: adminDataVN?.gallerieUrls
         }
 
+        
         const bgUrl =`background-image: linear-gradient(90deg, rgba(44, 60, 42, .66) 0%,  rgba(25, 78, 60, 0.76) 100% ), url("${adminData.heroImgUrl}");` ;
         
         res.render(`${dir}/index`,{
@@ -233,7 +235,7 @@ exports.postMessage = async (req,res,next)=>{
         const number = req.body.number;
         const time = req.body.time;
 
-        if(!name || !phone || !email || !number){
+        if(!name || !phone || !email){
             return res.redirect('/services')
         }
         let objectId = mongoose.Types.ObjectId(servId);
@@ -242,9 +244,6 @@ exports.postMessage = async (req,res,next)=>{
         if(servId){
             isBook = true;
         }
-
-        const service = await Service.findById(servId);
-
         const message = req.body.mess;
 
         const booking = new Message({
@@ -257,24 +256,6 @@ exports.postMessage = async (req,res,next)=>{
             time,
             isBook
         })
-
-        const html = `
-                <div>
-                <b style="color: palevioletred">
-                    Tên khách hàng: ${name} <br>
-                    Số điện thoại: ${phone} <br>
-                    Email: ${email} <br>
-                </b>
-                <p>
-                    Số lượng khách: ${number} <br>
-                    Thời gian đến: ${time} <br>
-                    Dịch vụ yêu cầu: ${service.name} <br>
-                    Tin nhắn khác hàng gửi: ${message}
-                </p>
-            </div>
-        `
-
-        senMail('xuanspa@gmail.com','Client Message', html);
         
         await booking.save();
 
@@ -448,10 +429,10 @@ exports.getRecruit = async (req,res,next)=>{
 // footer info 
 exports.fetchFooterInfo = async (req,res,next)=>{
     try {
-        const footer = await Footer.findById('5dde670b79e6460becdb84a7');
+        const footers = await Footer.find();
     
         res.status(200).json({
-            ...footer._doc
+            ...footers[0]._doc
         })
         
     } catch (err) {

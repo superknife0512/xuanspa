@@ -89,7 +89,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-mongoose.connect(process.env.MONGODB_CONNECTION_STRING, {useNewUrlParser: true}, err=>{
+mongoose.connect(process.env.MONGODB_CONNECTION_STRING, {useNewUrlParser: true,  useUnifiedTopology: true}, err=>{
   if(err){
     throw err
   }

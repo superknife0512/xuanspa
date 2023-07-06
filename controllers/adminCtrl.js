@@ -16,7 +16,7 @@ exports.getAdminPannel = async (req,res,next)=>{
             title: 'Admin board',
             activeTab: 'home',
             err: null,
-            editMode: true,
+            editMode: !!adminData,
             langFilter,
             adminData
         })
@@ -29,15 +29,13 @@ exports.getAdminPannel = async (req,res,next)=>{
 exports.postAdminData = async (req,res,next)=>{
     try {
         let heroImg, galleries, heroImgUrl, gallerieUrls;
-        const lang = req.body.lang;
+        const lang = req.body.lang[0];
 
         if(lang === 'vn'){
             heroImg = req.files['heroImg'][0];
             galleries = req.files['gallery'];
-            heroImgUrl = heroImg.path.replace(/\\/g, '/');
-            gallerieUrls = galleries.map(gal=>{
-                return gal.path.replace(/\\/g, '/')
-            })
+            heroImgUrl = heroImg.url;
+            gallerieUrls = galleries.map(gal => gal.url)
         }
 
         const title = req.body.title;
@@ -54,8 +52,7 @@ exports.postAdminData = async (req,res,next)=>{
 
         
         let adminData;
-        if(lang == 'vn'){
-    
+        if(lang == 'vn'){    
             adminData = new AdminData({
                 title,
                 subTitle,
@@ -91,8 +88,6 @@ exports.postEditAdmin = async (req,res,next)=>{
         const subTitle = req.body.subtitle;
         let heroImg, galleries;
 
-        console.log(lang);
-
         const recruitContent = {
             delta : req.body.recruitDelta,
             html: req.body.recruitHtml,
@@ -114,8 +109,7 @@ exports.postEditAdmin = async (req,res,next)=>{
                     heroImg = req.files['heroImg'][0];
                     const heroImgUrl = heroImg.url;
                     const heroBlobName = heroImg.blob
-                    
-                    deleteFile('admin', adminData.heroBlobName);
+            
                     adminData.heroImgUrl = heroImgUrl;
                     adminData.heroBlobName = heroBlobName;
                 }
@@ -129,9 +123,6 @@ exports.postEditAdmin = async (req,res,next)=>{
                         return gal.blob
                     })
 
-                    adminData.galleryBlobNames.forEach(blName=>{
-                        deleteFile('admin', blName)
-                    })
                     adminData.gallerieUrls = gallerieUrls
                     adminData.galleryBlobNames = galleryBlobNames
                 }
@@ -823,7 +814,7 @@ exports.deleteMessage = async (req,res,next)=>{
 
 // FOOTER --------------------------
 exports.getFooter = async (req,res,next)=>{
-    const footer = await Footer.findById('5dde670b79e6460becdb84a7');
+    const footer = (await Footer.find())[0];
     try {
         res.render('admin/footer', {
             title: 'Footer',
@@ -864,33 +855,44 @@ exports.postFooter = async (req,res,next)=>{
     }
 }
 
-exports.putFooter = async (req,res,next)=>{
-    const footer = await Footer.findById('5dde670b79e6460becdb84a7');
-    try {
-        const fb = req.body.fb;
-        const trip = req.body.trip;
-        const talk = req.body.talk;
-        const ig = req.body.ig;
-        const email = req.body.email;
+exports.putFooter = async (req,res,next)=>{    
+    const fb = req.body.fb;
+    const trip = req.body.trip;
+    const talk = req.body.talk;
+    const ig = req.body.ig;
+    const email = req.body.email;
+    const file = req.file;
 
-        const file = req.file;
-        console.log(file);
+    const footers = await Footer.find();
+    let footer = footers[0]
+
+    if (footers.length === 0) {
+        // create new 
+        footer = new Footer({
+            fb,
+            trip,
+            talk,
+            ig,
+            email,
+            imgUrl: file ? file.url : ''
+        })
+
+    } else {
         if(file) {
-            const blobName = /\/(banner-.*$)/.exec(footer.imgUrl)[1];
             footer.imgUrl = file.url;
-            deleteFile('admin', blobName);
+            // TODO: Update later
+            // const blobName = /\/(banner-.*$)/.exec(footer.imgUrl)[1];
+            // deleteFile('admin', blobName);
         }
-
         footer.fb = fb;
         footer.trip = trip;
         footer.talk = talk;
         footer.ig = ig;
         footer.email = email;
-
+    }
+    try {
         await footer.save();
-
         res.redirect('/admin/footer')
-        
     } catch (err) {
         next(err)
     }

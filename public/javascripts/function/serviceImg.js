@@ -1,5 +1,6 @@
 
 const allImgs = document.querySelectorAll('.servDetail__img');
+
 if(allImgs[0]){
     let index = 0;
 
@@ -13,6 +14,10 @@ if(allImgs[0]){
 
     displayImg(index);
     index+=1
+
+    if (allImgs.length === 1) {
+        return;
+    }
 
     setInterval(() => {
         displayImg(index);

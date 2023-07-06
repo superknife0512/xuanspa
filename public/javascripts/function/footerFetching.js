@@ -9,7 +9,6 @@ new Vue({
                 return res.json()
             })
             .then(data=>{
-                console.log(data);
                 this.footer = data
             })
     }

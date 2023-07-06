@@ -19,7 +19,8 @@ const messSchema = new mongoose.Schema({
     },
     number: {
         type: Number,
-        required: true,
+        required: false,
+        default: 1
     },
     time :{
         type: String,
