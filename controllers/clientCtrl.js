@@ -400,7 +400,8 @@ exports.getContact = async (req,res,next)=>{
             activeTab: 'contact',
             headerTitle: headerTitle,
             title: headerTitle,
-            services
+            services,
+            mapApiKey: process.env.MAP_API_KEY
         })
         
     } catch (err) {

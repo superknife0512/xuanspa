@@ -472,9 +472,9 @@ exports.postEditBlog = async (req,res,next)=>{
 
 exports.deleteBlog= async (req,res,next)=>{
     try {
-        const blog = await Blog.findById(req.body.blogId);
+        // const blog = await Blog.findById(req.body.blogId);
 
-        deleteFile('blogs', blog.blobName);
+        // deleteFile('blogs', blog.blobName);
         await Blog.findByIdAndRemove(req.body.blogId);
 
         res.redirect('/admin/blog');
@@ -622,9 +622,9 @@ exports.postEditPromotion = async (req,res,next)=>{
 exports.deletePromotion = async (req,res,next)=>{
     try {
         
-        const promotion = await Promotion.findById(req.body.proId);
+        // const promotion = await Promotion.findById(req.body.proId);
 
-        deleteFile('promotions', promotion.blobName);
+        // deleteFile('promotions', promotion.blobName);
         await Promotion.findByIdAndRemove(req.body.proId);
 
         res.redirect('/admin/promotion')
@@ -765,9 +765,9 @@ exports.postEditProduct = async (req,res,next)=>{
 
 exports.deleteProduct = async (req,res,next)=>{
     try {        
-        const product = await Product.findById(req.body.prodId);
+        // const product = await Product.findById(req.body.prodId);
 
-        deleteFile('product', product);
+        // deleteFile('product', product);
         await Product.findByIdAndRemove(req.body.prodId);
 
         res.redirect('/admin/product')
