@@ -1,7 +1,8 @@
-require('dotenv').config();
+
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
@@ -10,10 +11,8 @@ const MongoStore = require('connect-mongo')(session);
 
 const clientRouter = require('./routes/client');
 const adminRouter = require('./routes/admin');
-const authRouter = require('./routes/auth')
-
+const authRouter = require('./routes/auth');
 const app = express();
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -70,8 +69,6 @@ app.use('/services/public', express.static(path.join(__dirname, 'public')));
 app.use('/', clientRouter);
 app.use('/admin', adminRouter);
 app.use('/auth', authRouter);
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

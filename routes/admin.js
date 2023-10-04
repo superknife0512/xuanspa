@@ -7,6 +7,7 @@ const MulterAzureStorage = require('multer-azure-storage');
 
 require('dotenv').config()
 
+console.log('process.env.AZURE_CONNECTION_STRING', process.env.AZURE_CONNECTION_STRING);
 const serviceImgs = new MulterAzureStorage({
     azureStorageConnectionString: process.env.AZURE_CONNECTION_STRING,
     containerName: 'services',
